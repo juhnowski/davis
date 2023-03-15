@@ -211,188 +211,192 @@ public class Davis {
         return this.id;
       }
     
-    public String MeteoDate() {
+    public String getMeteoDate() {
         return this.MeteoDate;
     }
     
-    public String MeteoTime() {
+    public String getMeteoTime() {
         return this.MeteoTime;
     }
        
-    public Double TempOut() {
+    public Double getTempOut() {
         return this.TempOut;
     }
 
-    public Double HiTemp() {
+    public Double getHiTemp() {
         return this.HiTemp;
     }
 
-    public Double LowTemp() {
+    public Double getLowTemp() {
         return this.LowTemp;
     }
 
-    public Integer OutHum() {
+    public Integer getOutHum() {
         return this.OutHum;
     }
 
-    public Double DewPt() {
+    public Double getDewPt() {
         return this.DewPt;
     }
 
-    public Double WindSpeed() {
+    public Double getWindSpeed() {
         return this.WindSpeed;
     }
 
-    public String WindDir() {
+    public String getWindDir() {
         return this.WindDir;
     }
 
-    public Double WindRun() {
+    public Double getWindRun() {
         return this.WindRun;
     }
     
-    public Double HiSpeed() {
+    public Double getHiSpeed() {
         return this.HiSpeed;
     }
 
-    public String HiDir() {
+    public String getHiDir() {
         return this.HiDir;
     }
 
-    public Double WindChill() {
+    public Double getWindChill() {
         return this.WindChill;
     }
     
-    public Double HeatIndex() {
+    public Double getHeatIndex() {
         return this.HeatIndex;
     }
 
-    public Double THWIndex() {
+    public Double getTHWIndex() {
         return this.THWIndex;
     }
 
-    public Double THSWIndex() {
+    public Double getTHSWIndex() {
         return this.THSWIndex;
     }
 
-    public Double Bar() {
+    public Double getBar() {
         return this.Bar;
     }
 
-    public Double Rain() {
+    public Double getRain() {
         return this.Rain;
     }
     
-    public Double RainRate() {
+    public Double getRainRate() {
         return this.RainRate;
     }
 
-    public Double SolarRad() {
+    public Double getSolarRad() {
         return this.SolarRad;
     }
     
-    public Double SolarEnergy() {
+    public Double getSolarEnergy() {
         return this.SolarEnergy;
     }
 
-    public Double HiSolarRad() {
+    public Double getHiSolarRad() {
         return this.HiSolarRad;
     }
 
-    public Double UVIndex() {
+    public Double getUVIndex() {
         return this.UVIndex;
     }
 
-    public Double UVDose() {
+    public Double getUVDose() {
         return this.UVDose;
     }
 
-    public Double HiUV() {
+    public Double getHiUV() {
         return this.HiUV;
     }
 
-    public Double HeatDD() {
+    public Double getHeatDD() {
         return this.HeatDD;
     }
 
-    public Double CoolDD() {
+    public Double getCoolDD() {
         return this.CoolDD;
     }
 
-    public Double InTemp() {
+    public Double getInTemp() {
         return this.InTemp;
     }
 
-    public Double InHum() {
+    public Double getInHum() {
         return this.InHum;
     }
 
-    public Double InDew() {
+    public Double getInDew() {
         return this.InDew;
     }
 
-    public Double InHeat() {
+    public Double getInHeat() {
         return this.InHeat;
     }
 
-    public Double InEMC() {
+    public Double getInEMC() {
         return this.InEMC;
     }
 
-    public Double InAirDensity() {
+    public Double getInAirDensity() {
         return this.InAirDensity;
     }
 
-    public Double ET() {
+    public Double getET() {
         return this.ET;
     }
 
-    public Integer Soil1Moist() {
+    public Integer getSoil1Moist() {
         return this.Soil1Moist;
     }
 
-    public Integer Soil2Moist() {
+    public Integer getSoil2Moist() {
         return this.Soil2Moist;
     }
 
-    public Integer Soil3Moist() {
+    public Integer getSoil3Moist() {
         return this.Soil3Moist;
     }
 
-    public Integer Soil4Moist() {
+    public Integer getSoil4Moist() {
         return this.Soil4Moist;
     }
 
-    public Double SoilTemp1() {
+    public Double getSoilTemp1() {
         return this.SoilTemp1;
     }
 
-    public Double SoilTemp2() {
+    public Double getSoilTemp2() {
         return this.SoilTemp2;
     }
 
-    public Double SoilTemp3() {
+    public Double getSoilTemp3() {
         return this.SoilTemp3;
     }
 
-    public Double SoilTemp4() {
+    public Double getSoilTemp4() {
         return this.SoilTemp4;
     }
 
-    public Integer WindSamp() {
+    public Integer getWindSamp() {
         return this.WindSamp;
     }
 
-    public Integer WindTx() {
+    public Integer getWindTx() {
         return this.WindTx;
     }
 
-    public Double ISSRecept() {
+    public Double getISSRecept() {
         return this.ISSRecept;
     }
 
-    public Integer ArcInt() {
+    public Integer getArcInt() {
         return this.ArcInt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setMeteoDate(String MeteoDate) {

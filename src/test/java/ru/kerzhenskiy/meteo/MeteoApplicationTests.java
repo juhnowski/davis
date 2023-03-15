@@ -8,6 +8,7 @@ class MeteoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		assert(true);
 	}
 
 }
