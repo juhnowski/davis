@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class MeteoApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("server.servlet.context-path", "/meteo");
 		SpringApplication.run(MeteoApplication.class, args);
 	}
 

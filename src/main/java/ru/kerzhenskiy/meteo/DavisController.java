@@ -20,6 +20,10 @@ class DavisController {
     this.repository = repository;
   }
 
+  @GetMapping("/test")
+  String test() {
+    return "test ok";
+  }
 
   // Aggregate root
   // tag::get-aggregate-root[]
@@ -103,7 +107,7 @@ class DavisController {
       });
   }
 
-  @DeleteMapping("/employees/{id}")
+  @DeleteMapping("/davis/{id}")
   void deleteEmployee(@PathVariable Long id) {
     repository.deleteById(id);
   }
