@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("ru.kerzhenskiy.meteo.*")
 @ComponentScan(basePackages = { "ru.kerzhenskiy.meteo.*" })
 @EntityScan("ru.kerzhenskiy.meteo.*")   
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "ru.kerzhenskiy.meteo.*")
 public class MeteoApplication {
 
 	public static void main(String[] args) {
