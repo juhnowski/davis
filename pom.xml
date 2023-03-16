@@ -21,6 +21,7 @@
 
 	<modules>
 		<module>davis</module>
+		<module>galina</module>
 	</modules>
 
 	<dependencies>
