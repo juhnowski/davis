@@ -9,4 +9,5 @@ mvn clean spring-boot:run
 ## Проверка
 ```
 http://51.250.92.22:8080/data
+http://51.250.92.22:8080/observ
 ```
