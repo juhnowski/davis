@@ -1,6 +1,7 @@
-package ru.kerzhenskiy.meteo;
+package payroll;
 
-public class DavisUtil {
+
+public class DataUtil {
     public static Integer parseInt(String val){
         if (val.isEmpty() || val.contains("---")) return 0;
         

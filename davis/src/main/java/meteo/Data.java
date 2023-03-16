@@ -1,17 +1,15 @@
-package ru.kerzhenskiy.meteo;
+package payroll;
 
 import java.util.Objects;
 
-import javax.persistence.*;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 @Entity
-@EnableAutoConfiguration
-public class Davis {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Data {
+	private @Id @GeneratedValue Long id;
     private String MeteoDate;
     private String MeteoTime;
     private Double TempOut;
@@ -59,8 +57,9 @@ public class Davis {
     private Double ISSRecept;
     private Integer ArcInt;
     
+    public Data(){}
 
-    public Davis(String MeteoDate, 
+    public Data(String MeteoDate, 
     String MeteoTime,
     Double TempOut,
     Double HiTemp,
@@ -154,55 +153,55 @@ public class Davis {
       this.ArcInt = ArcInt;
     }
 
-    public Davis(String row) {
+    public Data(String row) {
         String[] values = row.split("\t");
         try {
             this.MeteoDate = values[0]; 
             this.MeteoTime = values[1];
-            this.TempOut = DavisUtil.parseDouble(values[2]);
-            this.HiTemp = DavisUtil.parseDouble(values[3]);
-            this.LowTemp = DavisUtil.parseDouble(values[4]);
-            this.OutHum = DavisUtil.parseInt(values[5]);
-            this.DewPt = DavisUtil.parseDouble(values[6]);
-            this.WindSpeed = DavisUtil.parseDouble(values[7]);
+            this.TempOut = DataUtil.parseDouble(values[2]);
+            this.HiTemp = DataUtil.parseDouble(values[3]);
+            this.LowTemp = DataUtil.parseDouble(values[4]);
+            this.OutHum = DataUtil.parseInt(values[5]);
+            this.DewPt = DataUtil.parseDouble(values[6]);
+            this.WindSpeed = DataUtil.parseDouble(values[7]);
             this.WindDir = values[8];
-            this.WindRun = DavisUtil.parseDouble(values[9]);
-            this.HiSpeed = DavisUtil.parseDouble(values[10]);
+            this.WindRun = DataUtil.parseDouble(values[9]);
+            this.HiSpeed = DataUtil.parseDouble(values[10]);
             this.HiDir = values[11];
-            this.WindChill = DavisUtil.parseDouble(values[12]);
-            this.HeatIndex = DavisUtil.parseDouble(values[13]);
-            this.THWIndex = DavisUtil.parseDouble(values[14]);
-            this.THSWIndex = DavisUtil.parseDouble(values[15]);
-            this.Bar = DavisUtil.parseDouble(values[16]);
-            this.Rain = DavisUtil.parseDouble(values[17]);
-            this.RainRate = DavisUtil.parseDouble(values[18]);
-            this.SolarRad = DavisUtil.parseDouble(values[19]);
-            this.SolarEnergy = DavisUtil.parseDouble(values[20]);
-            this.HiSolarRad = DavisUtil.parseDouble(values[21]);
-            this.UVIndex = DavisUtil.parseDouble(values[22]);
-            this.UVDose = DavisUtil.parseDouble(values[23]);
-            this.HiUV = DavisUtil.parseDouble(values[24]);
-            this.HeatDD = DavisUtil.parseDouble(values[25]);
-            this.CoolDD = DavisUtil.parseDouble(values[26]);
-            this.InTemp = DavisUtil.parseDouble(values[27]);
-            this.InHum = DavisUtil.parseDouble(values[28]);
-            this.InDew = DavisUtil.parseDouble(values[29]);
-            this.InHeat = DavisUtil.parseDouble(values[30]);
-            this.InEMC = DavisUtil.parseDouble(values[31]);
-            this.InAirDensity = DavisUtil.parseDouble(values[32]);
-            this.ET = DavisUtil.parseDouble(values[33]);
-            this.Soil1Moist = DavisUtil.parseInt(values[34]);
-            this.Soil2Moist = DavisUtil.parseInt(values[35]);
-            this.Soil3Moist = DavisUtil.parseInt(values[36]);
-            this.Soil4Moist = DavisUtil.parseInt(values[37]);
-            this.SoilTemp1 = DavisUtil.parseDouble(values[38]);
-            this.SoilTemp2 = DavisUtil.parseDouble(values[39]);
-            this.SoilTemp3 = DavisUtil.parseDouble(values[40]);
-            this.SoilTemp4 = DavisUtil.parseDouble(values[41]);
-            this.WindSamp = DavisUtil.parseInt(values[42]);
-            this.WindTx = DavisUtil.parseInt(values[43]);
-            this.ISSRecept = DavisUtil.parseDouble(values[44]);
-            this.ArcInt = DavisUtil.parseInt(values[45]);
+            this.WindChill = DataUtil.parseDouble(values[12]);
+            this.HeatIndex = DataUtil.parseDouble(values[13]);
+            this.THWIndex = DataUtil.parseDouble(values[14]);
+            this.THSWIndex = DataUtil.parseDouble(values[15]);
+            this.Bar = DataUtil.parseDouble(values[16]);
+            this.Rain = DataUtil.parseDouble(values[17]);
+            this.RainRate = DataUtil.parseDouble(values[18]);
+            this.SolarRad = DataUtil.parseDouble(values[19]);
+            this.SolarEnergy = DataUtil.parseDouble(values[20]);
+            this.HiSolarRad = DataUtil.parseDouble(values[21]);
+            this.UVIndex = DataUtil.parseDouble(values[22]);
+            this.UVDose = DataUtil.parseDouble(values[23]);
+            this.HiUV = DataUtil.parseDouble(values[24]);
+            this.HeatDD = DataUtil.parseDouble(values[25]);
+            this.CoolDD = DataUtil.parseDouble(values[26]);
+            this.InTemp = DataUtil.parseDouble(values[27]);
+            this.InHum = DataUtil.parseDouble(values[28]);
+            this.InDew = DataUtil.parseDouble(values[29]);
+            this.InHeat = DataUtil.parseDouble(values[30]);
+            this.InEMC = DataUtil.parseDouble(values[31]);
+            this.InAirDensity = DataUtil.parseDouble(values[32]);
+            this.ET = DataUtil.parseDouble(values[33]);
+            this.Soil1Moist = DataUtil.parseInt(values[34]);
+            this.Soil2Moist = DataUtil.parseInt(values[35]);
+            this.Soil3Moist = DataUtil.parseInt(values[36]);
+            this.Soil4Moist = DataUtil.parseInt(values[37]);
+            this.SoilTemp1 = DataUtil.parseDouble(values[38]);
+            this.SoilTemp2 = DataUtil.parseDouble(values[39]);
+            this.SoilTemp3 = DataUtil.parseDouble(values[40]);
+            this.SoilTemp4 = DataUtil.parseDouble(values[41]);
+            this.WindSamp = DataUtil.parseInt(values[42]);
+            this.WindTx = DataUtil.parseInt(values[43]);
+            this.ISSRecept = DataUtil.parseDouble(values[44]);
+            this.ArcInt = DataUtil.parseInt(values[45]);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -590,10 +589,10 @@ public class Davis {
         if (this == o)
         return true;
 
-        if (!(o instanceof Davis))
+        if (!(o instanceof Data))
         return false;
 
-        Davis data = (Davis) o;
+        Data data = (Data) o;
         return Objects.equals(this.MeteoDate, data.MeteoDate) && Objects.equals(this.MeteoTime, data.MeteoTime);
     }
 

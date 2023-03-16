@@ -1,5 +1,4 @@
-package ru.kerzhenskiy.meteo;
-
+package payroll;
     
 import java.util.List;
 
@@ -12,43 +11,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-class DavisController {
+public class DataController {
 
-  private final DavisRepository repository;
+  private final DataRepository repository;
 
-  DavisController(DavisRepository repository) {
+  public DataController(DataRepository repository) {
     this.repository = repository;
   }
 
   @GetMapping("/test")
-  String test() {
+  public String test() {
     return "test ok";
   }
 
   // Aggregate root
   // tag::get-aggregate-root[]
-  @GetMapping("/davis")
-  List<Davis> all() {
+  @GetMapping("/data")
+  public List<Data> all() {
     return repository.findAll();
   }
   // end::get-aggregate-root[]
 
-  @PostMapping("/davis")
-  Davis newEmployee(@RequestBody Davis data) {
+  @PostMapping("/data")
+  public Data newData(@RequestBody Data data) {
     return repository.save(data);
   }
 
   // Single item
   
-  @GetMapping("/davis/{id}")
-  Davis one(@PathVariable Long id) {
+  @GetMapping("/data/{id}")
+  public Data one(@PathVariable Long id) {
     
     return repository.findById(id)
-      .orElseThrow(() -> new DavisNotFoundException(id));
+      .orElseThrow(() -> new DataNotFoundException(id));
   }
 
   @PutMapping("/davis/{id}")
-  Davis replaceEmployee(@RequestBody Davis newData, @PathVariable Long id) {
+  public Data replaceData(@RequestBody Data newData, @PathVariable Long id) {
     
     return repository.findById(id)
       .map(data -> {
@@ -107,8 +106,8 @@ class DavisController {
       });
   }
 
-  @DeleteMapping("/davis/{id}")
-  void deleteEmployee(@PathVariable Long id) {
+  @DeleteMapping("/data/{id}")
+  public void deleteData(@PathVariable Long id) {
     repository.deleteById(id);
   }
 }

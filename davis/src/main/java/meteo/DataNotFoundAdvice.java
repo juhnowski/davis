@@ -1,4 +1,4 @@
-package ru.kerzhenskiy.meteo;
+package payroll;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class DavisNotFoundAdvice {
+class DataNotFoundAdvice {
 
-  @ResponseBody
-  @ExceptionHandler(DavisNotFoundException.class)
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  String davisNotFoundHandler(DavisNotFoundException ex) {
-    return ex.getMessage();
-  }
+	@ResponseBody
+	@ExceptionHandler(DataNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String dataNotFoundHandler(DataNotFoundException ex) {
+		return ex.getMessage();
+	}
 }
