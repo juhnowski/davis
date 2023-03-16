@@ -26,20 +26,20 @@ public class DataController {
 
   // Aggregate root
   // tag::get-aggregate-root[]
-  @GetMapping("/data")
+  @GetMapping("/davis")
   public List<Data> all() {
     return repository.findAll();
   }
   // end::get-aggregate-root[]
 
-  @PostMapping("/data")
+  @PostMapping("/davis")
   public Data newData(@RequestBody Data data) {
     return repository.save(data);
   }
 
   // Single item
   
-  @GetMapping("/data/{id}")
+  @GetMapping("/davis/{id}")
   public Data one(@PathVariable Long id) {
     
     return repository.findById(id)
@@ -106,7 +106,7 @@ public class DataController {
       });
   }
 
-  @DeleteMapping("/data/{id}")
+  @DeleteMapping("/davis/{id}")
   public void deleteData(@PathVariable Long id) {
     repository.deleteById(id);
   }
