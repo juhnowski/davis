@@ -1,100 +1,115 @@
 package galina;
 
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.Transient;
 
 @Entity
 public class Observ {
-	private @Id @GeneratedValue Long id;
-    private String MeteoDate; // Дата наблюдения
-    private String MeteoTime; // Время наблюдения
+	private @Id Long id;
+    private String MeteoDate; // Дата наблюдения '2011-12-03'
+    private String MeteoTime; // Время наблюдения '10:15:30'
     private String WindDir; // Направление ветра
     private Double WindSpeed; // скорость ветра
     private Integer Pressure; // давление
     private Double TempMin; // температура минимальная
     private Double TempMax; // температура максимальная
-    private Integer Precipitation; // Количество осадков
-    private String SunshineDuration; // Продолжительность солнечного сияния
+    private Double Precipitation; // Количество осадков
+    private Double SunshineDuration; // Продолжительность солнечного сияния
     private Double DewPoint; // Точка росы (в пожароопасный период)
     private Integer SnowLevelWeatherSite; // Уровень снега на метеоплощадке 
     private String SnowCoverage; // Определение покрытия земли снегом в баллах
     private Integer SnowLevelForest; // Уровень снега в лесу
     private Double AverageSnowDensity; // средняя плотность снега
-    private String MoistureWaterInSnow; // влагозапас воды в снеге
+    private Integer MoistureWaterInSnow; // влагозапас воды в снеге
     private String SnowCover; // Характер залегания снежного покрова
     private String SnowState; // характеристика состояния снега
 
     private Integer NRustayskoyeWaterLevel; // Нижнее Рустайское - Уровень воды 
-    private Integer NRustayskoyeTemp; // Нижнее Рустайское - Температура
+    private Double NRustayskoyeTemp; // Нижнее Рустайское - Температура
     private Double NRustayskoyepH; // Нижнее Рустайское - рН
-    private Double NRustayskoyeElConduct; // Нижнее Рустайское - электропроводность
-    private String NRustayskoyeWaterColor; // Нижнее Рустайское - цветность воды
+    private Integer NRustayskoyeElConduct; // Нижнее Рустайское - электропроводность
+    private Integer NRustayskoyeWaterColor; // Нижнее Рустайское - цветность воды
     private Double NRustayskoyeOxygen; // Нижнее Рустайское - кислород
     private Double NRustayskoyeBPK5; // Нижнее Рустайское - БПК-5
 
     private Integer KrugloeWaterLevel; // Круглое - Уровень воды
-    private Integer KrugloeTemp; // Круглое - Температура
+    private Double KrugloeTemp; // Круглое - Температура
     private Double KrugloepH; // Круглое - рН
-    private Double KrugloeElConduct; // Круглое - электропроводность
-    private String KrugloeWaterColor; // Круглое - цветность воды
+    private Integer KrugloeElConduct; // Круглое - электропроводность
+    private Integer KrugloeWaterColor; // Круглое - цветность воды
     private Double KrugloeOxygen; // Круглое - кислород
     private Double KrugloeBPK5; // Круглое - БПК-5
 
     private Integer KalachikWaterLevel; // Калачик - Уровень воды
-    private Integer KalachikTemp; // Калачик - Температура
+    private Double KalachikTemp; // Калачик - Температура
     private Double KalachikpH; // Калачик - рН
-    private Double KalachikElConduct; // Калачик - электропроводность
-    private String KalachikWaterColor; // Калачик - цветность воды
+    private Integer KalachikElConduct; // Калачик - электропроводность
+    private Integer KalachikWaterColor; // Калачик - цветность воды
     private Double KalachikOxygen; // Калачик - кислород
     private Double KalachikBPK5; // Калачик - БПК-5
 
     private Integer MakhovskoeWaterLevel; // Маховское - Уровень воды
-    private Integer MakhovskoeTemp; // Маховское - Температура
+    private Double MakhovskoeTemp; // Маховское - Температура
     private Double MakhovskoepH; // Маховское - рН
-    private Double MakhovskoeElConduct; // Маховское - электропроводность
-    private String MakhovskoeWaterColor; // Маховское - цветность воды
+    private Integer MakhovskoeElConduct; // Маховское - электропроводность
+    private Integer MakhovskoeWaterColor; // Маховское - цветность воды
     private Double MakhovskoeOxygen; // Маховское - кислород
     private Double MakhovskoeBPK5; // Маховское - БПК-5
 
     private Integer KerzhenetsWaterLevel; // Керженец - Уровень воды
-    private Integer KerzhenetsTemp; // Керженец - Температура
+    private Double KerzhenetsTemp; // Керженец - Температура
     private Double KerzhenetspH; // Керженец - рН
-    private Double KerzhenetsElConduct; // Керженец - электропроводность
-    private String KerzhenetsWaterColor; // Керженец - цветность воды
+    private Integer KerzhenetsElConduct; // Керженец - электропроводность
+    private Integer KerzhenetsWaterColor; // Керженец - цветность воды
     private Double KerzhenetsOxygen; // Керженец - кислород
     private Double KerzhenetsBPK5; // Керженец - БПК-5
 
     private Integer VishnyaWaterLevel; // Вишня - Уровень воды
-    private Integer VishnyaTemp; // Вишня - Температура
+    private Double VishnyaTemp; // Вишня - Температура
     private Double VishnyapH; // Вишня - рН
-    private Double VishnyaElConduct; // Вишня - электропроводность
-    private String VishnyaWaterColor; // Вишня - цветность воды
+    private Integer VishnyaElConduct; // Вишня - электропроводность
+    private Integer VishnyaWaterColor; // Вишня - цветность воды
     private Double VishnyaOxygen; // Вишня - кислород
     private Double VishnyaBPK5; // Вишня - БПК-5
 
     private Integer WellWaterLevel; // Колодец - Уровень воды
-    private Integer WellTemp; // Колодец - Температура
+    private Double WellTemp; // Колодец - Температура
     private Double WellpH; // Колодец - рН
-    private Double WellElConduct; // Колодец - электропроводность
-    private String WellWaterColor; // Колодец - цветность воды
+    private Integer WellElConduct; // Колодец - электропроводность
+    private Integer WellWaterColor; // Колодец - цветность воды
     private Double WellOxygen; // Колодец - кислород
     private Double WellBPK5; // Колодец - БПК-5
 
     private Integer VishenskoeWaterLevel; // Вишёнское - Уровень воды
-    private Integer VishenskoeTemp; // Вишёнское - Температура
+    private Double VishenskoeTemp; // Вишёнское - Температура
     private Double VishenskoepH; // Вишёнское - рН
-    private Double VishenskoeElConduct; // Вишёнское - электропроводность
-    private String VishenskoeWaterColor; // Вишёнское - цветность воды
+    private Integer VishenskoeElConduct; // Вишёнское - электропроводность
+    private Integer VishenskoeWaterColor; // Вишёнское - цветность воды
     private Double VishenskoeOxygen; // Вишёнское - кислород
     private Double VishenskoeBPK5; // Вишёнское - БПК-5
 
+    @Transient
+    private LocalDate parsedDate;
+    @Transient
+    private LocalTime parsedTime;
 
-    
-    public Observ(){}
+
+    public Observ(){
+        setId(System.currentTimeMillis());
+    }
 
     public Observ(
         String MeteoDate,
@@ -104,75 +119,73 @@ public class Observ {
         Integer Pressure,
         Double TempMin,
         Double TempMax,
-        Integer Precipitation,
-        String SunshineDuration,
+        Double Precipitation,
+        Double SunshineDuration,
         Double DewPoint,
         Integer SnowLevelWeatherSite,
         String SnowCoverage,
         Integer SnowLevelForest,
         Double AverageSnowDensity,
-        String MoistureWaterInSnow,
+        Integer MoistureWaterInSnow,
         String SnowCover,
         String SnowState,
         Integer NRustayskoyeWaterLevel,
-        Integer NRustayskoyeTemp,
+        Double NRustayskoyeTemp,
         Double NRustayskoyepH,
-        Double NRustayskoyeElConduct,
-        String NRustayskoyeWaterColor,
+        Integer NRustayskoyeElConduct,
+        Integer NRustayskoyeWaterColor,
         Double NRustayskoyeOxygen,
         Double NRustayskoyeBPK5,
         Integer KrugloeWaterLevel,
-        Integer KrugloeTemp,
+        Double KrugloeTemp,
         Double KrugloepH,
-        Double KrugloeElConduct,
-        String KrugloeWaterColor,
+        Integer KrugloeElConduct,
+        Integer KrugloeWaterColor,
         Double KrugloeOxygen,
         Double KrugloeBPK5,
         Integer KalachikWaterLevel,
-        Integer KalachikTemp,
+        Double KalachikTemp,
         Double KalachikpH,
-        Double KalachikElConduct,
-        String KalachikWaterColor,
+        Integer KalachikElConduct,
+        Integer KalachikWaterColor,
         Double KalachikOxygen,
         Double KalachikBPK5,
         Integer MakhovskoeWaterLevel,
-        Integer MakhovskoeTemp,
+        Double MakhovskoeTemp,
         Double MakhovskoepH,
-        Double MakhovskoeElConduct,
-        String MakhovskoeWaterColor,
+        Integer MakhovskoeElConduct,
+        Integer MakhovskoeWaterColor,
         Double MakhovskoeOxygen,
         Double MakhovskoeBPK5,
         Integer KerzhenetsWaterLevel,
-        Integer KerzhenetsTemp,
+        Double KerzhenetsTemp,
         Double KerzhenetspH,
-        Double KerzhenetsElConduct,
-        String KerzhenetsWaterColor,
+        Integer KerzhenetsElConduct,
+        Integer KerzhenetsWaterColor,
         Double KerzhenetsOxygen,
         Double KerzhenetsBPK5,
         Integer VishnyaWaterLevel,
-        Integer VishnyaTemp,
+        Double VishnyaTemp,
         Double VishnyapH,
-        Double VishnyaElConduct,
-        String VishnyaWaterColor,
+        Integer VishnyaElConduct,
+        Integer VishnyaWaterColor,
         Double VishnyaOxygen,
         Double VishnyaBPK5,
         Integer WellWaterLevel,
-        Integer WellTemp,
+        Double WellTemp,
         Double WellpH,
-        Double WellElConduct,
-        String WellWaterColor,
+        Integer WellElConduct,
+        Integer WellWaterColor,
         Double WellOxygen,
         Double WellBPK5,
         Integer VishenskoeWaterLevel,
-        Integer VishenskoeTemp,
+        Double VishenskoeTemp,
         Double VishenskoepH,
-        Double VishenskoeElConduct,
-        String VishenskoeWaterColor,
+        Integer VishenskoeElConduct,
+        Integer VishenskoeWaterColor,
         Double VishenskoeOxygen,
         Double VishenskoeBPK5
     ) {
-        this.MeteoDate = MeteoDate;
-        this.MeteoTime = MeteoTime;
         this.WindDir = WindDir;
         this.WindSpeed = WindSpeed;
         this.Pressure = Pressure;
@@ -278,11 +291,11 @@ public class Observ {
         return this.TempMax;
     }
 
-    public Integer getPrecipitation() {
+    public Double getPrecipitation() {
         return this.Precipitation;
     }
 
-    public String getSunshineDuration() {
+    public Double getSunshineDuration() {
         return this.SunshineDuration;
     }
 
@@ -306,7 +319,7 @@ public class Observ {
         return this.AverageSnowDensity;
     }
 
-    public String getMoistureWaterInSnow() {
+    public Integer getMoistureWaterInSnow() {
         return this.MoistureWaterInSnow;
     }
 
@@ -322,7 +335,7 @@ public class Observ {
         return this.NRustayskoyeWaterLevel;
     }
     
-    public Integer getNRustayskoyeTemp() {
+    public Double getNRustayskoyeTemp() {
         return this.NRustayskoyeTemp;
     }
 
@@ -330,11 +343,11 @@ public class Observ {
         return this.NRustayskoyepH;
     }
     
-    public Double getNRustayskoyeElConduct() {
+    public Integer getNRustayskoyeElConduct() {
         return this.NRustayskoyeElConduct;
     }
 
-    public String getNRustayskoyeWaterColor() {
+    public Integer getNRustayskoyeWaterColor() {
         return this.NRustayskoyeWaterColor;
     }
 
@@ -350,7 +363,7 @@ public class Observ {
         return this.KrugloeWaterLevel;
     }
 
-    public Integer getKrugloeTemp() {
+    public Double getKrugloeTemp() {
         return this.KrugloeTemp;
     }
 
@@ -358,11 +371,11 @@ public class Observ {
         return this.KrugloepH;
     }
 
-    public Double getKrugloeElConduct() {
+    public Integer getKrugloeElConduct() {
         return this.KrugloeElConduct;
     }
 
-    public String getKrugloeWaterColor() {
+    public Integer getKrugloeWaterColor() {
         return this.KrugloeWaterColor;
     }
 
@@ -378,7 +391,7 @@ public class Observ {
         return this.KalachikWaterLevel;
     }
 
-    public Integer getKalachikTemp() {
+    public Double getKalachikTemp() {
         return this.KalachikTemp;
     }
 
@@ -386,11 +399,11 @@ public class Observ {
         return this.KalachikpH;
     }
 
-    public Double getKalachikElConduct() {
+    public Integer getKalachikElConduct() {
         return this.KalachikElConduct;
     }
 
-    public String getKalachikWaterColor() {
+    public Integer getKalachikWaterColor() {
         return this.KalachikWaterColor;
     }
 
@@ -406,7 +419,7 @@ public class Observ {
         return this.MakhovskoeWaterLevel;
     }
 
-    public Integer getMakhovskoeTemp() {
+    public Double getMakhovskoeTemp() {
         return this.MakhovskoeTemp;
     }
 
@@ -414,11 +427,11 @@ public class Observ {
         return this.MakhovskoepH;
     }
 
-    public Double getMakhovskoeElConduct() {
+    public Integer getMakhovskoeElConduct() {
         return this.MakhovskoeElConduct;
     }
 
-    public String getMakhovskoeWaterColor() {
+    public Integer getMakhovskoeWaterColor() {
         return this.MakhovskoeWaterColor;
     }
 
@@ -434,7 +447,7 @@ public class Observ {
         return this.KerzhenetsWaterLevel;
     }
 
-    public Integer getKerzhenetsTemp() {
+    public Double getKerzhenetsTemp() {
         return this.KerzhenetsTemp;
     }
 
@@ -442,11 +455,11 @@ public class Observ {
         return this.KerzhenetspH;
     }
 
-    public Double getKerzhenetsElConduct() {
+    public Integer getKerzhenetsElConduct() {
         return this.KerzhenetsElConduct;
     }
 
-    public String getKerzhenetsWaterColor() {
+    public Integer getKerzhenetsWaterColor() {
         return this.KerzhenetsWaterColor;
     }
 
@@ -462,7 +475,7 @@ public class Observ {
         return this.VishnyaWaterLevel;
     }
 
-    public Integer getVishnyaTemp() {
+    public Double getVishnyaTemp() {
         return this.VishnyaTemp;
     }
 
@@ -470,11 +483,11 @@ public class Observ {
         return this.VishnyapH;
     }
 
-    public Double getVishnyaElConduct() {
+    public Integer getVishnyaElConduct() {
         return this.VishnyaElConduct;
     }
 
-    public String getVishnyaWaterColor() {
+    public Integer getVishnyaWaterColor() {
         return this.VishnyaWaterColor;
     }
 
@@ -490,7 +503,7 @@ public class Observ {
         return this.WellWaterLevel;
     }
 
-    public Integer getWellTemp() {
+    public Double getWellTemp() {
         return this.WellTemp;
     }
 
@@ -498,11 +511,11 @@ public class Observ {
         return this.WellpH;
     }
 
-    public Double getWellElConduct() {
+    public Integer getWellElConduct() {
         return this.WellElConduct;
     }
 
-    public String getWellWaterColor() {
+    public Integer getWellWaterColor() {
         return this.WellWaterColor;
     }
 
@@ -518,18 +531,18 @@ public class Observ {
         return this.VishenskoeWaterLevel;
     }
 
-    public Integer getVishenskoeTemp() {
+    public Double getVishenskoeTemp() {
         return this.VishenskoeTemp;
     }
 
     public Double getVishenskoepH() {
         return this.VishenskoepH;
     }
-    public Double getVishenskoeElConduct() {
+    public Integer getVishenskoeElConduct() {
         return this.VishenskoeElConduct;
     }
 
-    public String getVishenskoeWaterColor() {
+    public Integer getVishenskoeWaterColor() {
         return this.VishenskoeWaterColor;
     }
 
@@ -546,11 +559,34 @@ public class Observ {
     }
 
     public void setMeteoDate(String MeteoDate) {
-        this.MeteoDate = MeteoDate;
+        if (MeteoDate.isEmpty()) {
+            parsedDate = LocalDate.now();
+            this.MeteoDate = parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        } else{
+            this.MeteoDate = MeteoDate;
+            parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        }
+        
+        this.id = parsedDate.toEpochDay();
+        if (parsedTime !=null){
+            this.id += parsedTime.toNanoOfDay();
+        } 
     }
     
     public void setMeteoTime(String MeteoTime) {
-        this.MeteoTime = MeteoTime;
+        if (MeteoTime.isEmpty()){
+            parsedTime = LocalTime.now();
+            this.MeteoTime = parsedTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)); 
+        } else {
+            this.MeteoTime = MeteoTime;
+            parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+        }
+        
+        this.id = parsedTime.toNanoOfDay();
+        if (parsedDate != null) {
+            this.id += parsedDate.toEpochDay();
+        }
+        
     }
     
        
@@ -574,11 +610,11 @@ public class Observ {
         this.TempMax = TempMax;
     }
 
-    public void setPrecipitation(Integer Precipitation) {
+    public void setPrecipitation(Double Precipitation) {
         this.Precipitation = Precipitation;
     }
 
-    public void setSunshineDuration(String SunshineDuration) {
+    public void setSunshineDuration(Double SunshineDuration) {
         this.SunshineDuration = SunshineDuration;
     }
 
@@ -602,7 +638,7 @@ public class Observ {
         this.AverageSnowDensity=AverageSnowDensity;
     }
 
-    public void setMoistureWaterInSnow(String MoistureWaterInSnow) {
+    public void setMoistureWaterInSnow(Integer MoistureWaterInSnow) {
         this.MoistureWaterInSnow=MoistureWaterInSnow;
     }
 
@@ -618,7 +654,7 @@ public class Observ {
         this.NRustayskoyeWaterLevel=NRustayskoyeWaterLevel;
     }
     
-    public void setNRustayskoyeTemp(Integer NRustayskoyeTemp) {
+    public void setNRustayskoyeTemp(Double NRustayskoyeTemp) {
         this.NRustayskoyeTemp=NRustayskoyeTemp;
     }
 
@@ -626,11 +662,11 @@ public class Observ {
         this.NRustayskoyepH=NRustayskoyepH;
     }
     
-    public void setNRustayskoyeElConduct(Double NRustayskoyeElConduct) {
+    public void setNRustayskoyeElConduct(Integer NRustayskoyeElConduct) {
         this.NRustayskoyeElConduct=NRustayskoyeElConduct;
     }
 
-    public void setNRustayskoyeWaterColor(String NRustayskoyeWaterColor) {
+    public void setNRustayskoyeWaterColor(Integer NRustayskoyeWaterColor) {
         this.NRustayskoyeWaterColor=NRustayskoyeWaterColor;
     }
 
@@ -646,7 +682,7 @@ public class Observ {
         this.KrugloeWaterLevel=KrugloeWaterLevel;
     }
 
-    public void setKrugloeTemp(Integer KrugloeTemp) {
+    public void setKrugloeTemp(Double KrugloeTemp) {
         this.KrugloeTemp=KrugloeTemp;
     }
 
@@ -654,11 +690,11 @@ public class Observ {
         this.KrugloepH=KrugloepH;
     }
 
-    public void setKrugloeElConduct(Double KrugloeElConduct) {
+    public void setKrugloeElConduct(Integer KrugloeElConduct) {
         this.KrugloeElConduct=KrugloeElConduct;
     }
 
-    public void setKrugloeWaterColor(String KrugloeWaterColor) {
+    public void setKrugloeWaterColor(Integer KrugloeWaterColor) {
         this.KrugloeWaterColor=KrugloeWaterColor;
     }
 
@@ -674,7 +710,7 @@ public class Observ {
         this.KalachikWaterLevel=KalachikWaterLevel;
     }
 
-    public void setKalachikTemp(Integer KalachikTemp) {
+    public void setKalachikTemp(Double KalachikTemp) {
         this.KalachikTemp=KalachikTemp;
     }
 
@@ -682,11 +718,11 @@ public class Observ {
         this.KalachikpH=KalachikpH;
     }
 
-    public void setKalachikElConduct(Double KalachikElConduct) {
+    public void setKalachikElConduct(Integer KalachikElConduct) {
         this.KalachikElConduct=KalachikElConduct;
     }
 
-    public void setKalachikWaterColor(String KalachikWaterColor) {
+    public void setKalachikWaterColor(Integer KalachikWaterColor) {
         this.KalachikWaterColor=KalachikWaterColor;
     }
 
@@ -702,7 +738,7 @@ public class Observ {
         this.MakhovskoeWaterLevel=MakhovskoeWaterLevel;
     }
 
-    public void setMakhovskoeTemp(Integer MakhovskoeTemp) {
+    public void setMakhovskoeTemp(Double MakhovskoeTemp) {
         this.MakhovskoeTemp=MakhovskoeTemp;
     }
 
@@ -710,11 +746,11 @@ public class Observ {
         this.MakhovskoepH=MakhovskoepH;
     }
 
-    public void setMakhovskoeElConduct(Double MakhovskoeElConduct) {
+    public void setMakhovskoeElConduct(Integer MakhovskoeElConduct) {
         this.MakhovskoeElConduct=MakhovskoeElConduct;
     }
 
-    public void setMakhovskoeWaterColor(String MakhovskoeWaterColor) {
+    public void setMakhovskoeWaterColor(Integer MakhovskoeWaterColor) {
         this.MakhovskoeWaterColor=MakhovskoeWaterColor;
     }
 
@@ -730,7 +766,7 @@ public class Observ {
         this.KerzhenetsWaterLevel=KerzhenetsWaterLevel;
     }
 
-    public void setKerzhenetsTemp(Integer KerzhenetsTemp) {
+    public void setKerzhenetsTemp(Double KerzhenetsTemp) {
         this.KerzhenetsTemp=KerzhenetsTemp;
     }
 
@@ -738,11 +774,11 @@ public class Observ {
         this.KerzhenetspH=KerzhenetspH;
     }
 
-    public void setKerzhenetsElConduct(Double KerzhenetsElConduct) {
+    public void setKerzhenetsElConduct(Integer KerzhenetsElConduct) {
         this.KerzhenetsElConduct=KerzhenetsElConduct;
     }
 
-    public void setKerzhenetsWaterColor(String KerzhenetsWaterColor) {
+    public void setKerzhenetsWaterColor(Integer KerzhenetsWaterColor) {
         this.KerzhenetsWaterColor=KerzhenetsWaterColor;
     }
 
@@ -758,7 +794,7 @@ public class Observ {
         this.VishnyaWaterLevel=VishnyaWaterLevel;
     }
 
-    public void setVishnyaTemp(Integer VishnyaTemp) {
+    public void setVishnyaTemp(Double VishnyaTemp) {
         this.VishnyaTemp=VishnyaTemp;
     }
 
@@ -766,11 +802,11 @@ public class Observ {
         this.VishnyapH=VishnyapH;
     }
 
-    public void setVishnyaElConduct(Double VishnyaElConduct) {
+    public void setVishnyaElConduct(Integer VishnyaElConduct) {
         this.VishnyaElConduct=VishnyaElConduct;
     }
 
-    public void setVishnyaWaterColor(String VishnyaWaterColor) {
+    public void setVishnyaWaterColor(Integer VishnyaWaterColor) {
         this.VishnyaWaterColor=VishnyaWaterColor;
     }
 
@@ -786,7 +822,7 @@ public class Observ {
         this.WellWaterLevel=WellWaterLevel;
     }
 
-    public void setWellTemp(Integer WellTemp) {
+    public void setWellTemp(Double WellTemp) {
         this.WellTemp=WellTemp;
     }
 
@@ -794,11 +830,11 @@ public class Observ {
         this.WellpH=WellpH;
     }
 
-    public void setWellElConduct(Double WellElConduct) {
+    public void setWellElConduct(Integer WellElConduct) {
         this.WellElConduct=WellElConduct;
     }
 
-    public void setWellWaterColor(String WellWaterColor) {
+    public void setWellWaterColor(Integer WellWaterColor) {
         this.WellWaterColor=WellWaterColor;
     }
 
@@ -814,18 +850,18 @@ public class Observ {
         this.VishenskoeWaterLevel=VishenskoeWaterLevel;
     }
 
-    public void setVishenskoeTemp(Integer VishenskoeTemp) {
+    public void setVishenskoeTemp(Double VishenskoeTemp) {
         this.VishenskoeTemp=VishenskoeTemp;
     }
 
     public void setVishenskoepH(Double VishenskoepH) {
         this.VishenskoepH=VishenskoepH;
     }
-    public void setVishenskoeElConduct(Double VishenskoeElConduct) {
+    public void setVishenskoeElConduct(Integer VishenskoeElConduct) {
         this.VishenskoeElConduct=VishenskoeElConduct;
     }
 
-    public void setVishenskoeWaterColor(String VishenskoeWaterColor) {
+    public void setVishenskoeWaterColor(Integer VishenskoeWaterColor) {
         this.VishenskoeWaterColor=VishenskoeWaterColor;
     }
 
@@ -846,16 +882,17 @@ public class Observ {
         return false;
 
         Observ observ = (Observ) o;
-        return Objects.equals(this.MeteoDate, observ.MeteoDate) && Objects.equals(this.MeteoTime, observ.MeteoTime);
+        return Objects.equals(this.id, observ.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.MeteoDate, this.MeteoTime);
+        return Objects.hash(this.id);
     }
       
     @Override
     public String toString() {
       return "Наблюдение {" + "id=" + this.id + ", date='" + this.MeteoDate + '\'' + ", time='" + this.MeteoTime + '\'' + '}';
     }
+
 }
