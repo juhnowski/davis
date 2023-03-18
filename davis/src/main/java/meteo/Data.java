@@ -1,15 +1,25 @@
 package davis;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 
 @Entity
 public class Data {
-	private @Id @GeneratedValue Long id;
+	private @Id Long id;
     private String MeteoDate;
     private String MeteoTime;
     private Double TempOut;
@@ -56,8 +66,15 @@ public class Data {
     private Integer WindTx;
     private Double ISSRecept;
     private Integer ArcInt;
+
+    @Transient
+    private LocalDate parsedDate;
+    @Transient
+    private LocalTime parsedTime;    
     
-    public Data(){}
+    public Data(){
+        setId(System.currentTimeMillis());
+    }
 
     public Data(String MeteoDate, 
     String MeteoTime,
@@ -105,8 +122,8 @@ public class Data {
     Integer WindTx,
     Double ISSRecept,
     Integer ArcInt) {
-      this.MeteoDate = MeteoDate; 
-      this.MeteoTime = MeteoTime;
+        setMeteoDate(MeteoDate);
+        setMeteoTime(MeteoTime);
       this.TempOut = TempOut;
       this.HiTemp = HiTemp;
       this.LowTemp = LowTemp;
@@ -156,8 +173,8 @@ public class Data {
     public Data(String row) {
         String[] values = row.split("\t");
         try {
-            this.MeteoDate = values[0]; 
-            this.MeteoTime = values[1];
+            setMeteoDate(values[0]);
+            setMeteoTime(values[1]);
             this.TempOut = DataUtil.parseDouble(values[2]);
             this.HiTemp = DataUtil.parseDouble(values[3]);
             this.LowTemp = DataUtil.parseDouble(values[4]);
@@ -400,13 +417,42 @@ public class Data {
     }
 
     public void setMeteoDate(String MeteoDate) {
-        this.MeteoDate = MeteoDate;
+        if (MeteoDate.isEmpty()) {
+            parsedDate = LocalDate.now();
+            this.MeteoDate = parsedDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+        } else{
+            this.MeteoDate = MeteoDate;
+            parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofPattern("dd.MM.yy"));
+        }
+        
+        if (parsedTime !=null){
+            this.id = LocalDateTime.of(parsedDate, parsedTime)
+                .atZone(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli(); 
+        } else {
+            this.id = parsedDate.toEpochDay();
+        }  
     }
     
     public void setMeteoTime(String MeteoTime) {
-        this.MeteoTime = MeteoTime;
+        if (MeteoTime.isEmpty()){
+            parsedTime = LocalTime.now();
+            this.MeteoTime = parsedTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)); 
+        } else {
+            this.MeteoTime = MeteoTime;
+            parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+        }
+        
+        if (parsedDate !=null){
+            this.id = LocalDateTime.of(parsedDate, parsedTime)
+                .atZone(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli(); 
+        } else {
+            this.id = parsedTime.toNanoOfDay();
+        }
     }
-    
        
     public void setTempOut(Double TempOut) {
         this.TempOut = TempOut;
@@ -592,13 +638,13 @@ public class Data {
         if (!(o instanceof Data))
         return false;
 
-        Data data = (Data) o;
-        return Objects.equals(this.MeteoDate, data.MeteoDate) && Objects.equals(this.MeteoTime, data.MeteoTime);
+        Data observ = (Data) o;
+        return Objects.equals(this.id, observ.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.MeteoDate, this.MeteoTime);
+        return Objects.hash(this.id);
     }
       
     @Override

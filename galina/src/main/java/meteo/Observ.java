@@ -186,6 +186,8 @@ public class Observ {
         Double VishenskoeOxygen,
         Double VishenskoeBPK5
     ) {
+        setMeteoDate(MeteoDate);
+        setMeteoTime(MeteoTime);
         this.WindDir = WindDir;
         this.WindSpeed = WindSpeed;
         this.Pressure = Pressure;
@@ -561,16 +563,20 @@ public class Observ {
     public void setMeteoDate(String MeteoDate) {
         if (MeteoDate.isEmpty()) {
             parsedDate = LocalDate.now();
-            this.MeteoDate = parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+            this.MeteoDate = parsedDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
         } else{
             this.MeteoDate = MeteoDate;
-            parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+            parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofPattern("dd.MM.yy"));
         }
         
-        this.id = parsedDate.toEpochDay();
         if (parsedTime !=null){
-            this.id += parsedTime.toNanoOfDay();
-        } 
+            this.id = LocalDateTime.of(parsedDate, parsedTime)
+                .atZone(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli(); 
+        } else {
+            this.id = parsedDate.toEpochDay();
+        }  
     }
     
     public void setMeteoTime(String MeteoTime) {
@@ -582,11 +588,14 @@ public class Observ {
             parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
         }
         
-        this.id = parsedTime.toNanoOfDay();
-        if (parsedDate != null) {
-            this.id += parsedDate.toEpochDay();
+        if (parsedDate !=null){
+            this.id = LocalDateTime.of(parsedDate, parsedTime)
+                .atZone(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli(); 
+        } else {
+            this.id = parsedTime.toNanoOfDay();
         }
-        
     }
     
        
