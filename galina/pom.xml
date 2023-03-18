@@ -35,12 +35,21 @@
 
 	<profiles>
 		<profile>
-			<id>dev</id>
+			<id>devmem</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<spring.profiles.active>dev</spring.profiles.active>
+				<spring.profiles.active>devmem</spring.profiles.active>
+			</properties>
+		</profile>
+				<profile>
+			<id>devfs</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>devfs</spring.profiles.active>
 			</properties>
 		</profile>
 		<profile>
