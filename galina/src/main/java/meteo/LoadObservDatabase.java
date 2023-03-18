@@ -10,12 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
 
 @Configuration
 public class LoadObservDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadObservDatabase.class);
 
 
+    @Profile({"devmem","devfs"})
     @Bean
     CommandLineRunner initDatabase(ObservRepository repository) {
       Observ o1 = new Observ();
