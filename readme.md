@@ -1,13 +1,22 @@
 # О программе
-Программа создана для Керженского заповедника для сбора данных метеостанции Davis (Черноречье) в Yandex облаке
+Программа создана для Керженского заповедника для сбора данных метеостанции Davis (Черноречье) и рабочего места лаборанта Galina в Yandex облаке
 
-## Запуск
+## Davis 
+### Запуск Davis 
 ```
 cd davis/
 mvn clean spring-boot:run
 ```
-## Проверка
+### Проверка Davis 
+http://localhost:8082/davis
+
+## Galina
+## Запуск Galina
 ```
-http://51.250.92.22:8080/data
-http://51.250.92.22:8080/observ
+cd galina/
+mvn clean spring-boot:run
+```
+## Проверка Galina
+```
+http://localhost:8081/observ
 ```
