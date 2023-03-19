@@ -20,7 +20,7 @@ public class LoadObservDatabase {
 
     @Profile({"devmem","devfs"})
     @Bean
-    CommandLineRunner initDatabase(ObservRepository repository) {
+    CommandLineRunner initDatabase(galina.ObservRepository repository) {
       Observ o1 = new Observ();
       o1.setMeteoDate("02.06.22");
       o1.setMeteoTime("18:00");
@@ -97,8 +97,8 @@ public class LoadObservDatabase {
       o1.setVishenskoeBPK5(123.32);
         
       Observ o2 = new Observ();
-      o2.setMeteoDate("");
-      o2.setMeteoTime("");
+      o2.setMeteoDate("02.06.22");
+      o2.setMeteoTime("18:10");
       o2.setWindDir("Юг");
       o2.setWindSpeed(1.1);
       o2.setPressure(750);

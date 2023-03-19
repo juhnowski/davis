@@ -2,6 +2,10 @@ package galina;
     
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +22,7 @@ public class ObservController {
   public ObservController(ObservRepository repository) {
     this.repository = repository;
   }
-
+    ObjectMapper objectMapper = new ObjectMapper();
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/observ")
@@ -27,9 +31,12 @@ public class ObservController {
   }
   // end::get-aggregate-root[]
 
-  @PostMapping("/observ")
-  public Observ newObserv(@RequestBody Observ observ) {
-    return repository.save(observ);
+    @PostMapping("/observ")
+  public Observ newObserv(@RequestBody String strObserv) throws JsonProcessingException {
+
+      Observ observ = objectMapper.readValue(strObserv, Observ.class);
+      observ.createId();
+      return repository.save(observ);
   }
 
   // Single item
@@ -41,9 +48,13 @@ public class ObservController {
       .orElseThrow(() -> new ObservNotFoundException(id));
   }
 
+  
+
   @PutMapping("/observ/{id}")
-  public Observ replaceData(@RequestBody Observ newObserv, @PathVariable Long id) {
-    
+  public Observ replaceData(@RequestBody String strNewObserv, @PathVariable Long id) throws JsonProcessingException {
+      Observ newObserv = objectMapper.readValue(strNewObserv, Observ.class);
+      System.out.println(strNewObserv);
+      System.out.println(objectMapper.writeValueAsString(newObserv));
     return repository.findById(id)
       .map(observ -> {
         observ.setMeteoDate(newObserv.getMeteoDate());
