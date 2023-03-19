@@ -27,12 +27,17 @@ public class ObservController {
   public String all() {
     List<Observ> list = repository.findAll();
     StringBuffer sb = new StringBuffer();
+
+    sb.append("[");
+    int s = list.size()-1;
+    int i = 0;
     for (Observ o:list){
-      sb.append("[");
       sb.append(o.toJSON());
-      sb.append(",");
-      sb.append("]");
+      if (i++ < s) {
+        sb.append(",");
+      }
     }
+    sb.append("]");
     
     return sb.toString();
   }

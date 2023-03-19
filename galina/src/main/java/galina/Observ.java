@@ -7,15 +7,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -1092,7 +1087,7 @@ public class Observ {
         sb.append("\"VishenskoeElConduct\":\""); sb.append(this.VishenskoeElConduct);sb.append("\",");
         sb.append("\"VishenskoeWaterColor\":\""); sb.append(this.VishenskoeWaterColor);sb.append("\",");
         sb.append("\"VishenskoeOxygen\":\""); sb.append(this.VishenskoeOxygen);sb.append("\",");
-        sb.append("\"VishenskoeBPK5\":\""); sb.append(this.VishenskoeBPK5);sb.append("\",");
+        sb.append("\"VishenskoeBPK5\":\""); sb.append(this.VishenskoeBPK5);
         sb.append("}");
 
         return sb.toString();
