@@ -1016,4 +1016,86 @@ public class Observ {
       return "Наблюдение {" + "id=" + this.id + ", date='" + this.MeteoDate + '\'' + ", time='" + this.MeteoTime + '\'' + '}';
     }
 
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append("\"id\":\""); sb.append(this.id);sb.append("\",");
+        sb.append("\"MeteoDate\":\""); sb.append(this.MeteoDate); sb.append("\",");
+        sb.append("\"MeteoTime\":\""); sb.append(this.MeteoTime); sb.append("\",");
+        sb.append("\"WindDir\":\""); sb.append(this.WindDir); sb.append("\",");
+        sb.append("\"WindSpeed\":\""); sb.append(this.WindSpeed);sb.append("\",");
+        sb.append("\"Pressure\":\""); sb.append(this.Pressure);sb.append("\",");
+        sb.append("\"TempMin\":\""); sb.append(this.TempMin);sb.append("\",");
+        sb.append("\"TempMax\":\""); sb.append(this.TempMax);sb.append("\",");
+        sb.append("\"Precipitation\":\""); sb.append(this.Precipitation);sb.append("\",");
+        sb.append("\"SunshineDuration\":\""); sb.append(this.SunshineDuration);sb.append("\",");
+        sb.append("\"DewPoint\":\""); sb.append(this.DewPoint);sb.append("\",");
+        sb.append("\"SnowLevelWeatherSite\":\""); sb.append(this.SnowLevelWeatherSite);sb.append("\",");
+        sb.append("\"SnowCoverage\":\""); sb.append(this.SnowCoverage);sb.append("\",");
+        sb.append("\"SnowLevelForest\":\""); sb.append(this.SnowLevelForest);sb.append("\",");
+        sb.append("\"AverageSnowDensity\":\""); sb.append(this.AverageSnowDensity);sb.append("\",");
+        sb.append("\"MoistureWaterInSnow\":\""); sb.append(this.MoistureWaterInSnow);sb.append("\",");
+        sb.append("\"SnowCover\":\""); sb.append(this.SnowCover);sb.append("\",");
+        sb.append("\"SnowState\":\""); sb.append(this.SnowState);sb.append("\",");
+        sb.append("\"NRustayskoyeWaterLevel\":\""); sb.append(this.NRustayskoyeWaterLevel);sb.append("\",");
+        sb.append("\"NRustayskoyeTemp\":\""); sb.append(this.NRustayskoyeTemp);sb.append("\",");
+        sb.append("\"NRustayskoyepH\":\""); sb.append(this.NRustayskoyepH);sb.append("\",");
+        sb.append("\"NRustayskoyeElConduct\":\""); sb.append(this.NRustayskoyeElConduct);sb.append("\",");
+        sb.append("\"NRustayskoyeWaterColor\":\""); sb.append(this.NRustayskoyeWaterColor);sb.append("\",");
+        sb.append("\"NRustayskoyeOxygen\":\""); sb.append(this.NRustayskoyeOxygen);sb.append("\",");
+        sb.append("\"NRustayskoyeBPK5\":\""); sb.append(this.NRustayskoyeBPK5);sb.append("\",");
+        sb.append("\"KrugloeWaterLevel\":\""); sb.append(this.KrugloeWaterLevel);sb.append("\",");
+        sb.append("\"KrugloeTemp\":\""); sb.append(this.KrugloeTemp);sb.append("\",");
+        sb.append("\"KrugloepH\":\""); sb.append(this.KrugloepH);sb.append("\",");
+        sb.append("\"KrugloeElConduct\":\""); sb.append(this.KrugloeElConduct);sb.append("\",");
+        sb.append("\"KrugloeWaterColor\":\""); sb.append(this.KrugloeWaterColor);sb.append("\",");
+        sb.append("\"KrugloeOxygen\":\""); sb.append(this.KrugloeOxygen);sb.append("\",");
+        sb.append("\"KrugloeBPK5\":\""); sb.append(this.KrugloeBPK5);sb.append("\",");
+        sb.append("\"KalachikWaterLevel\":\""); sb.append(this.KalachikWaterLevel);sb.append("\",");
+        sb.append("\"KalachikTemp\":\""); sb.append(this.KalachikTemp);sb.append("\",");
+        sb.append("\"KalachikpH\":\""); sb.append(this.KalachikpH);sb.append("\",");
+        sb.append("\"KalachikElConduct\":\""); sb.append(this.KalachikElConduct);sb.append("\",");
+        sb.append("\"KalachikWaterColor\":\""); sb.append(this.KalachikWaterColor);sb.append("\",");
+        sb.append("\"KalachikOxygen\":\""); sb.append(this.KalachikOxygen);sb.append("\",");
+        sb.append("\"KalachikBPK5\":\""); sb.append(this.KalachikBPK5);sb.append("\",");
+        sb.append("\"MakhovskoeWaterLevel\":\""); sb.append(this.MakhovskoeWaterLevel);sb.append("\",");
+        sb.append("\"MakhovskoeTemp\":\""); sb.append(this.MakhovskoeTemp);sb.append("\",");
+        sb.append("\"MakhovskoepH\":\""); sb.append(this.MakhovskoepH);sb.append("\",");
+        sb.append("\"MakhovskoeElConduct\":\""); sb.append(this.MakhovskoeElConduct);sb.append("\",");
+        sb.append("\"MakhovskoeWaterColor\":\""); sb.append(this.MakhovskoeWaterColor);sb.append("\",");
+        sb.append("\"MakhovskoeOxygen\":\""); sb.append(this.MakhovskoeOxygen);sb.append("\",");
+        sb.append("\"MakhovskoeBPK5\":\""); sb.append(this.MakhovskoeBPK5);sb.append("\",");
+        sb.append("\"KerzhenetsWaterLevel\":\""); sb.append(this.KerzhenetsWaterLevel);sb.append("\",");
+        sb.append("\"KerzhenetsTemp\":\""); sb.append(this.KerzhenetsTemp);sb.append("\",");
+        sb.append("\"KerzhenetspH\":\""); sb.append(this.KerzhenetspH);sb.append("\",");
+        sb.append("\"KerzhenetsElConduct\":\""); sb.append(this.KerzhenetsElConduct);sb.append("\",");
+        sb.append("\"KerzhenetsWaterColor\":\""); sb.append(this.KerzhenetsWaterColor);sb.append("\",");
+        sb.append("\"KerzhenetsOxygen\":\""); sb.append(this.KerzhenetsOxygen);sb.append("\",");
+        sb.append("\"KerzhenetsBPK5\":\""); sb.append(this.KerzhenetsBPK5);sb.append("\",");
+        sb.append("\"VishnyaWaterLevel\":\""); sb.append(this.VishnyaWaterLevel);sb.append("\",");
+        sb.append("\"VishnyaTemp\":\""); sb.append(this.VishnyaTemp);sb.append("\",");
+        sb.append("\"VishnyapH\":\""); sb.append(this.VishnyapH);sb.append("\",");
+        sb.append("\"VishnyaElConduct\":\""); sb.append(this.VishnyaElConduct);sb.append("\",");
+        sb.append("\"VishnyaWaterColor\":\""); sb.append(this.VishnyaWaterColor);sb.append("\",");
+        sb.append("\"VishnyaOxygen\":\""); sb.append(this.VishnyaOxygen);sb.append("\",");
+        sb.append("\"VishnyaBPK5\":\""); sb.append(this.VishnyaBPK5);sb.append("\",");
+        sb.append("\"WellWaterLevel\":\""); sb.append(this.WellWaterLevel);sb.append("\",");
+        sb.append("\"WellTemp\":\""); sb.append(this.WellTemp);sb.append("\",");
+        sb.append("\"WellpH\":\""); sb.append(this.WellpH);sb.append("\",");
+        sb.append("\"WellElConduct\":\""); sb.append(this.WellElConduct);sb.append("\",");
+        sb.append("\"WellWaterColor\":\""); sb.append(this.WellWaterColor);sb.append("\",");
+        sb.append("\"WellOxygen\":\""); sb.append(this.WellOxygen);sb.append("\",");
+        sb.append("\"WellBPK5\":\""); sb.append(this.WellBPK5);sb.append("\",");
+        sb.append("\"VishenskoeWaterLevel\":\""); sb.append(this.VishenskoeWaterLevel);sb.append("\",");
+        sb.append("\"VishenskoeTemp\":\""); sb.append(this.VishenskoeTemp);sb.append("\",");
+        sb.append("\"VishenskoepH\":\""); sb.append(this.VishenskoepH);sb.append("\",");
+        sb.append("\"VishenskoeElConduct\":\""); sb.append(this.VishenskoeElConduct);sb.append("\",");
+        sb.append("\"VishenskoeWaterColor\":\""); sb.append(this.VishenskoeWaterColor);sb.append("\",");
+        sb.append("\"VishenskoeOxygen\":\""); sb.append(this.VishenskoeOxygen);sb.append("\",");
+        sb.append("\"VishenskoeBPK5\":\""); sb.append(this.VishenskoeBPK5);sb.append("\",");
+        sb.append("}");
+
+        return sb.toString();
+        
+    }
 }

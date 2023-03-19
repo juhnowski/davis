@@ -3,9 +3,7 @@ package galina;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,35 +24,52 @@ public class ObservController {
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/observ")
-  public List<Observ> all() {
-    return repository.findAll();
+  public String all() {
+    List<Observ> list = repository.findAll();
+    StringBuffer sb = new StringBuffer();
+    for (Observ o:list){
+      sb.append("[");
+      sb.append(o.toJSON());
+      sb.append(",");
+      sb.append("]");
+    }
+    
+    return sb.toString();
   }
   // end::get-aggregate-root[]
 
     @PostMapping("/observ")
-  public Observ newObserv(@RequestBody String strObserv) throws JsonProcessingException {
+  public String newObserv(@RequestBody String strObserv) throws JsonProcessingException {
+        try {
+            ObservMapper mapper = new ObservMapper();
+            //Observ observ = objectMapper.readValue(strObserv, Observ.class);
+            Observ observ = mapper.parse(strObserv);
 
-      Observ observ = objectMapper.readValue(strObserv, Observ.class);
-      observ.createId();
-      return repository.save(observ);
+            observ.createId();
+            Observ o = repository.save(observ);
+            return o.toJSON();
+        } catch (Exception e){
+            return null;
+        }
   }
 
   // Single item
   
   @GetMapping("/observ/{id}")
-  public Observ one(@PathVariable Long id) {
+  public String one(@PathVariable Long id) {
     
-    return repository.findById(id)
+    Observ o = repository.findById(id)
       .orElseThrow(() -> new ObservNotFoundException(id));
+
+    return o.toJSON();
   }
 
   
 
   @PutMapping("/observ/{id}")
-  public Observ replaceData(@RequestBody String strNewObserv, @PathVariable Long id) throws JsonProcessingException {
-      Observ newObserv = objectMapper.readValue(strNewObserv, Observ.class);
-      System.out.println(strNewObserv);
-      System.out.println(objectMapper.writeValueAsString(newObserv));
+  public String replaceData(@RequestBody String strNewObserv, @PathVariable Long id) throws JsonProcessingException {
+    Observ newObserv = objectMapper.readValue(strNewObserv, Observ.class);
+
     return repository.findById(id)
       .map(observ -> {
         observ.setMeteoDate(newObserv.getMeteoDate());
@@ -132,11 +147,11 @@ public class ObservController {
         observ.setVishenskoeOxygen(newObserv.getVishenskoeOxygen());
         observ.setVishenskoeBPK5(newObserv.getVishenskoeBPK5());
         
-        return repository.save(observ);
+        return repository.save(observ).toJSON();
       })
       .orElseGet(() -> {
         newObserv.setId(id);
-        return repository.save(newObserv);
+        return repository.save(newObserv).toJSON();
       });
   }
 
