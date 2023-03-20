@@ -17,7 +17,26 @@ JDBC URL:         | jdbc:h2:/data/meteo/galina
 User Name:        | sa
 Password:         | password
 
+При первом запуске создается БД, поэтому в файле настроек galina/src/main/resources/application-devfs.properties должны быть поля:
+```
+# Hibernate ddl auto (create, create-drop, validate, update)
+# first start
+ spring.jpa.hibernate.ddl-auto= create
+ spring.jpa.generate-ddl=true
 
+# next start
+# spring.jpa.hibernate.ddl-auto= update
+```
+а перед вторым пуском:
+```
+# Hibernate ddl auto (create, create-drop, validate, update)
+# first start
+# spring.jpa.hibernate.ddl-auto= create
+# spring.jpa.generate-ddl=true
+
+# next start
+spring.jpa.hibernate.ddl-auto= update
+```
 
 ### PostgreSQL
 prod - Прод
