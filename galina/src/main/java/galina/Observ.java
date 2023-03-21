@@ -572,7 +572,7 @@ public class Observ {
              parsedTime = LocalTime.now();
          }
 
-        updateId();;
+        updateId();
     }
     
     public void setMeteoTime(String MeteoTime) {
@@ -589,7 +589,7 @@ public class Observ {
              parsedDate = LocalDate.now();
          }
 
-        updateId();;
+        updateId();
     }
 
     private void updateId(){

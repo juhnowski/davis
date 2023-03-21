@@ -42,7 +42,6 @@ public class ObservController {
   public String newObserv(@RequestBody String strObserv) {
         try {
             ObservMapper mapper = new ObservMapper();
-            //Observ observ = objectMapper.readValue(strObserv, Observ.class);
             Observ observ = mapper.parse(strObserv);
 
             observ.createId();

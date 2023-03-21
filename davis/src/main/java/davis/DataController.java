@@ -19,36 +19,70 @@ public class DataController {
     this.repository = repository;
   }
 
-  @GetMapping("/test")
-  public String test() {
-    return "test ok";
+
+  @GetMapping("/davis")
+  public String all() {
+    List<Data> list = repository.findAll();
+    StringBuffer sb = new StringBuffer();
+
+    sb.append("[");
+    int s = list.size()-1;
+    int i = 0;
+    for (Data o:list){
+      sb.append(o.toJSON());
+      if (i++ < s) {
+        sb.append(",");
+      }
+    }
+    sb.append("]");
+    
+    return sb.toString();
   }
 
-  // Aggregate root
-  // tag::get-aggregate-root[]
-  @GetMapping("/davis")
-  public List<Data> all() {
-    return repository.findAll();
-  }
-  // end::get-aggregate-root[]
 
   @PostMapping("/davis")
-  public Data newData(@RequestBody Data data) {
-    return repository.save(data);
+  public String newData(@RequestBody String strData) {
+    try {
+      DataMapper mapper = new DataMapper();
+      Data data = mapper.parse(strData);
+
+      data.createId();
+      Data d = repository.save(data);
+      return d.toJSON();
+  } catch (Exception e){
+      return null;
+  }
   }
 
-  // Single item
+  @PostMapping("/davis/raw")
+  public String newRawData(@RequestBody String strData) {
+    try {
+      Data data = new Data(strData);
+      Data d = repository.save(data);
+      return d.toJSON();
+  } catch (Exception e){
+      return null;
+  }
+  }
   
   @GetMapping("/davis/{id}")
-  public Data one(@PathVariable Long id) {
+  public String one(@PathVariable Long id) {
     
-    return repository.findById(id)
+    Data data = repository.findById(id)
       .orElseThrow(() -> new DataNotFoundException(id));
+
+    return data.toJSON();  
   }
 
-  @PutMapping("/davis/{id}")
-  public Data replaceData(@RequestBody Data newData, @PathVariable Long id) {
+  @PutMapping("/davis")
+  public String replaceData(@RequestBody String strNewData) {
     
+    DataMapper mapper = new DataMapper();
+    
+    try{
+      Data newData = mapper.parse(strNewData);
+      long id = newData.getId();
+
     return repository.findById(id)
       .map(data -> {
         data.setMeteoDate(newData.getMeteoDate());
@@ -98,12 +132,17 @@ public class DataController {
         data.setISSRecept(newData.getISSRecept());
         data.setArcInt(newData.getArcInt());
         
-        return repository.save(data);
+        return repository.save(data).toJSON();
       })
       .orElseGet(() -> {
         newData.setId(id);
-        return repository.save(newData);
+        return repository.save(newData).toJSON();
       });
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return e.getMessage();
+    }
   }
 
   @DeleteMapping("/davis/{id}")

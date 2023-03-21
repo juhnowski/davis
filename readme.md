@@ -3,8 +3,16 @@
 
 ## Профили 
 ### H2 
-devmem - Разработка, H2 в памяти
-devfs - Разработка, H2 в /data/meteo
+#### devmem - Разработка, H2 в памяти
+#### devfs - Разработка, H2 в /data/meteo
+
+Предварительно нужно создать каталог 
+```
+sudo mkdir /data
+sudo mkdir /data/meteo
+sudo chown ilya /data
+sudo mkdir /data/meteo
+```
 
 Для devfs доступна консоль:
 Поле в диалоге    |  Значение

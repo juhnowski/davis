@@ -4,14 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -22,50 +17,50 @@ public class Data {
 	private @Id Long id;
     private String MeteoDate;
     private String MeteoTime;
-    private Double TempOut;
-    private Double HiTemp;
-    private Double LowTemp;
-    private Integer OutHum;
-    private Double DewPt;
-    private Double WindSpeed;
+    private double TempOut;
+    private double HiTemp;
+    private double LowTemp;
+    private int    OutHum;
+    private double DewPt;
+    private double WindSpeed;
     private String WindDir;
-    private Double WindRun;
-    private Double HiSpeed;
+    private double WindRun;
+    private double HiSpeed;
     private String HiDir;
-    private Double WindChill;
-    private Double HeatIndex;
-    private Double THWIndex;
-    private Double THSWIndex;
-    private Double Bar;
-    private Double Rain;
-    private Double RainRate;
-    private Double SolarRad;
-    private Double SolarEnergy;
-    private Double HiSolarRad;
-    private Double UVIndex;
-    private Double UVDose;
-    private Double HiUV;
-    private Double HeatDD;
-    private Double CoolDD;
-    private Double InTemp;
-    private Double InHum;
-    private Double InDew;
-    private Double InHeat;
-    private Double InEMC;
-    private Double InAirDensity;
-    private Double ET;
-    private Integer Soil1Moist;
-    private Integer Soil2Moist;
-    private Integer Soil3Moist;
-    private Integer Soil4Moist;
-    private Double SoilTemp1;
-    private Double SoilTemp2;
-    private Double SoilTemp3;
-    private Double SoilTemp4;
-    private Integer WindSamp;
-    private Integer WindTx;
-    private Double ISSRecept;
-    private Integer ArcInt;
+    private double WindChill;
+    private double HeatIndex;
+    private double THWIndex;
+    private double THSWIndex;
+    private double Bar;
+    private double Rain;
+    private double RainRate;
+    private double SolarRad;
+    private double SolarEnergy;
+    private double HiSolarRad;
+    private double UVIndex;
+    private double UVDose;
+    private double HiUV;
+    private double HeatDD;
+    private double CoolDD;
+    private double InTemp;
+    private double InHum;
+    private double InDew;
+    private double InHeat;
+    private double InEMC;
+    private double InAirDensity;
+    private double ET;
+    private int Soil1Moist;
+    private int Soil2Moist;
+    private int Soil3Moist;
+    private int Soil4Moist;
+    private double SoilTemp1;
+    private double SoilTemp2;
+    private double SoilTemp3;
+    private double SoilTemp4;
+    private int WindSamp;
+    private int WindTx;
+    private double ISSRecept;
+    private int ArcInt;
 
     @Transient
     private LocalDate parsedDate;
@@ -73,55 +68,54 @@ public class Data {
     private LocalTime parsedTime;    
     
     public Data(){
-        setId(System.currentTimeMillis());
     }
 
     public Data(String MeteoDate, 
     String MeteoTime,
-    Double TempOut,
-    Double HiTemp,
-    Double LowTemp,
-    Integer OutHum,
-    Double DewPt,
-    Double WindSpeed,
+    double TempOut,
+    double HiTemp,
+    double LowTemp,
+    int OutHum,
+    double DewPt,
+    double WindSpeed,
     String WindDir,
-    Double WindRun,
-    Double HiSpeed,
+    double WindRun,
+    double HiSpeed,
     String HiDir,
-    Double WindChill,
-    Double HeatIndex,
-    Double THWIndex,
-    Double THSWIndex,
-    Double Bar,
-    Double Rain,
-    Double RainRate,
-    Double SolarRad,
-    Double SolarEnergy,
-    Double HiSolarRad,
-    Double UVIndex,
-    Double UVDose,
-    Double HiUV,
-    Double HeatDD,
-    Double CoolDD,
-    Double InTemp,
-    Double InHum,
-    Double InDew,
-    Double InHeat,
-    Double InEMC,
-    Double InAirDensity,
-    Double ET,
-    Integer Soil1Moist,
-    Integer Soil2Moist,
-    Integer Soil3Moist,
-    Integer Soil4Moist,
-    Double SoilTemp1,
-    Double SoilTemp2,
-    Double SoilTemp3,
-    Double SoilTemp4,
-    Integer WindSamp,
-    Integer WindTx,
-    Double ISSRecept,
-    Integer ArcInt) {
+    double WindChill,
+    double HeatIndex,
+    double THWIndex,
+    double THSWIndex,
+    double Bar,
+    double Rain,
+    double RainRate,
+    double SolarRad,
+    double SolarEnergy,
+    double HiSolarRad,
+    double UVIndex,
+    double UVDose,
+    double HiUV,
+    double HeatDD,
+    double CoolDD,
+    double InTemp,
+    double InHum,
+    double InDew,
+    double InHeat,
+    double InEMC,
+    double InAirDensity,
+    double ET,
+    int Soil1Moist,
+    int Soil2Moist,
+    int Soil3Moist,
+    int Soil4Moist,
+    double SoilTemp1,
+    double SoilTemp2,
+    double SoilTemp3,
+    double SoilTemp4,
+    int WindSamp,
+    int WindTx,
+    double ISSRecept,
+    int ArcInt) {
         setMeteoDate(MeteoDate);
         setMeteoTime(MeteoTime);
       this.TempOut = TempOut;
@@ -236,27 +230,27 @@ public class Data {
         return this.MeteoTime;
     }
        
-    public Double getTempOut() {
+    public double getTempOut() {
         return this.TempOut;
     }
 
-    public Double getHiTemp() {
+    public double getHiTemp() {
         return this.HiTemp;
     }
 
-    public Double getLowTemp() {
+    public double getLowTemp() {
         return this.LowTemp;
     }
 
-    public Integer getOutHum() {
+    public int getOutHum() {
         return this.OutHum;
     }
 
-    public Double getDewPt() {
+    public double getDewPt() {
         return this.DewPt;
     }
 
-    public Double getWindSpeed() {
+    public double getWindSpeed() {
         return this.WindSpeed;
     }
 
@@ -264,11 +258,11 @@ public class Data {
         return this.WindDir;
     }
 
-    public Double getWindRun() {
+    public double getWindRun() {
         return this.WindRun;
     }
     
-    public Double getHiSpeed() {
+    public double getHiSpeed() {
         return this.HiSpeed;
     }
 
@@ -276,139 +270,139 @@ public class Data {
         return this.HiDir;
     }
 
-    public Double getWindChill() {
+    public double getWindChill() {
         return this.WindChill;
     }
     
-    public Double getHeatIndex() {
+    public double getHeatIndex() {
         return this.HeatIndex;
     }
 
-    public Double getTHWIndex() {
+    public double getTHWIndex() {
         return this.THWIndex;
     }
 
-    public Double getTHSWIndex() {
+    public double getTHSWIndex() {
         return this.THSWIndex;
     }
 
-    public Double getBar() {
+    public double getBar() {
         return this.Bar;
     }
 
-    public Double getRain() {
+    public double getRain() {
         return this.Rain;
     }
     
-    public Double getRainRate() {
+    public double getRainRate() {
         return this.RainRate;
     }
 
-    public Double getSolarRad() {
+    public double getSolarRad() {
         return this.SolarRad;
     }
     
-    public Double getSolarEnergy() {
+    public double getSolarEnergy() {
         return this.SolarEnergy;
     }
 
-    public Double getHiSolarRad() {
+    public double getHiSolarRad() {
         return this.HiSolarRad;
     }
 
-    public Double getUVIndex() {
+    public double getUVIndex() {
         return this.UVIndex;
     }
 
-    public Double getUVDose() {
+    public double getUVDose() {
         return this.UVDose;
     }
 
-    public Double getHiUV() {
+    public double getHiUV() {
         return this.HiUV;
     }
 
-    public Double getHeatDD() {
+    public double getHeatDD() {
         return this.HeatDD;
     }
 
-    public Double getCoolDD() {
+    public double getCoolDD() {
         return this.CoolDD;
     }
 
-    public Double getInTemp() {
+    public double getInTemp() {
         return this.InTemp;
     }
 
-    public Double getInHum() {
+    public double getInHum() {
         return this.InHum;
     }
 
-    public Double getInDew() {
+    public double getInDew() {
         return this.InDew;
     }
 
-    public Double getInHeat() {
+    public double getInHeat() {
         return this.InHeat;
     }
 
-    public Double getInEMC() {
+    public double getInEMC() {
         return this.InEMC;
     }
 
-    public Double getInAirDensity() {
+    public double getInAirDensity() {
         return this.InAirDensity;
     }
 
-    public Double getET() {
+    public double getET() {
         return this.ET;
     }
 
-    public Integer getSoil1Moist() {
+    public int getSoil1Moist() {
         return this.Soil1Moist;
     }
 
-    public Integer getSoil2Moist() {
+    public int getSoil2Moist() {
         return this.Soil2Moist;
     }
 
-    public Integer getSoil3Moist() {
+    public int getSoil3Moist() {
         return this.Soil3Moist;
     }
 
-    public Integer getSoil4Moist() {
+    public int getSoil4Moist() {
         return this.Soil4Moist;
     }
 
-    public Double getSoilTemp1() {
+    public double getSoilTemp1() {
         return this.SoilTemp1;
     }
 
-    public Double getSoilTemp2() {
+    public double getSoilTemp2() {
         return this.SoilTemp2;
     }
 
-    public Double getSoilTemp3() {
+    public double getSoilTemp3() {
         return this.SoilTemp3;
     }
 
-    public Double getSoilTemp4() {
+    public double getSoilTemp4() {
         return this.SoilTemp4;
     }
 
-    public Integer getWindSamp() {
+    public int getWindSamp() {
         return this.WindSamp;
     }
 
-    public Integer getWindTx() {
+    public int getWindTx() {
         return this.WindTx;
     }
 
-    public Double getISSRecept() {
+    public double getISSRecept() {
         return this.ISSRecept;
     }
 
-    public Integer getArcInt() {
+    public int getArcInt() {
         return this.ArcInt;
     }
 
@@ -424,57 +418,63 @@ public class Data {
             this.MeteoDate = MeteoDate;
             parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofPattern("dd.MM.yy"));
         }
-        
-        if (parsedTime !=null){
-            this.id = LocalDateTime.of(parsedDate, parsedTime)
-                .atZone(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli(); 
-        } else {
-            this.id = parsedDate.toEpochDay();
-        }  
+       
+        if (parsedTime == null){
+            parsedTime = LocalTime.now();
+        }
+
+       updateId();
     }
     
     public void setMeteoTime(String MeteoTime) {
         if (MeteoTime.isEmpty()){
             parsedTime = LocalTime.now();
-            this.MeteoTime = parsedTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)); 
+            this.MeteoTime = parsedTime.format(DateTimeFormatter.ofPattern("HH:mm"));
         } else {
             this.MeteoTime = MeteoTime;
-            parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+            parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofPattern("HH:mm"));
         }
-        
-        if (parsedDate !=null){
-            this.id = LocalDateTime.of(parsedDate, parsedTime)
-                .atZone(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli(); 
-        } else {
-            this.id = parsedTime.toNanoOfDay();
+       
+        if (parsedDate == null) {
+            parsedDate = LocalDate.now();
         }
+
+       updateId();
     }
        
-    public void setTempOut(Double TempOut) {
+    private void updateId(){
+        this.id = LocalDateTime.of(parsedDate, parsedTime)
+                .atZone(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli();
+    }
+
+    public void createId(){
+        this.setMeteoDate(this.getMeteoDate());
+        this.setMeteoTime(this.getMeteoTime());
+    }
+
+    public void setTempOut(double TempOut) {
         this.TempOut = TempOut;
     }
 
-    public void setHiTemp(Double HiTemp) {
+    public void setHiTemp(double HiTemp) {
         this.HiTemp = HiTemp;
     }
 
-    public void setLowTemp(Double LowTemp) {
+    public void setLowTemp(double LowTemp) {
         this.LowTemp = LowTemp;
     }
 
-    public void setOutHum(Integer OutHum) {
+    public void setOutHum(int OutHum) {
         this.OutHum = OutHum;
     }
 
-    public void setDewPt(Double DewPt) {
+    public void setDewPt(double DewPt) {
         this.DewPt = DewPt;
     }
 
-    public void setWindSpeed(Double WindSpeed) {
+    public void setWindSpeed(double WindSpeed) {
         this.WindSpeed = WindSpeed;
     }
 
@@ -482,11 +482,11 @@ public class Data {
         this.WindDir=WindDir;
     }
 
-    public void setWindRun(Double WindRun) {
+    public void setWindRun(double WindRun) {
         this.WindRun = WindRun;
     }
     
-    public void setHiSpeed(Double HiSpeed) {
+    public void setHiSpeed(double HiSpeed) {
         this.HiSpeed=HiSpeed;
     }
 
@@ -494,139 +494,139 @@ public class Data {
         this.HiDir=HiDir;
     }
 
-    public void setWindChill(Double WindChill) {
+    public void setWindChill(double WindChill) {
         this.WindChill=WindChill;
     }
     
-    public void setHeatIndex(Double HeatIndex) {
+    public void setHeatIndex(double HeatIndex) {
         this.HeatIndex=HeatIndex;
     }
 
-    public void setTHWIndex(Double THWIndex) {
+    public void setTHWIndex(double THWIndex) {
         this.THWIndex = THWIndex;
     }
 
-    public void setTHSWIndex(Double THSWIndex) {
+    public void setTHSWIndex(double THSWIndex) {
         this.THSWIndex=THSWIndex;
     }
 
-    public void setBar(Double Bar) {
+    public void setBar(double Bar) {
         this.Bar=Bar;
     }
 
-    public void setRain(Double Rain) {
+    public void setRain(double Rain) {
         this.Rain=Rain;
     }
     
-    public void setRainRate(Double RainRate) {
+    public void setRainRate(double RainRate) {
         this.RainRate = RainRate;
     }
 
-    public void setSolarRad(Double SolarRad) {
+    public void setSolarRad(double SolarRad) {
         this.SolarRad=SolarRad;
     }
     
-    public void setSolarEnergy(Double SolarEnergy) {
+    public void setSolarEnergy(double SolarEnergy) {
         this.SolarEnergy=SolarEnergy;
     }
 
-    public void setHiSolarRad(Double HiSolarRad) {
+    public void setHiSolarRad(double HiSolarRad) {
         this.HiSolarRad=HiSolarRad;
     }
 
-    public void setUVIndex(Double UVIndex) {
+    public void setUVIndex(double UVIndex) {
         this.UVIndex=UVIndex;
     }
 
-    public void setUVDose(Double UVDose) {
+    public void setUVDose(double UVDose) {
         this.UVDose=UVDose;
     }
 
-    public void setHiUV(Double HiUV) {
+    public void setHiUV(double HiUV) {
         this.HiUV = HiUV;
     }
 
-    public void setHeatDD(Double HeatDD) {
+    public void setHeatDD(double HeatDD) {
         this.HeatDD=HeatDD;
     }
 
-    public void setCoolDD(Double CoolDD) {
+    public void setCoolDD(double CoolDD) {
         this.CoolDD=CoolDD;
     }
 
-    public void setInTemp(Double InTemp) {
+    public void setInTemp(double InTemp) {
         this.InTemp=InTemp;
     }
 
-    public void setInHum(Double InHum) {
+    public void setInHum(double InHum) {
         this.InHum=InHum;
     }
 
-    public void setInDew(Double InDew) {
+    public void setInDew(double InDew) {
         this.InDew=InDew;
     }
 
-    public void setInHeat(Double InHeat) {
+    public void setInHeat(double InHeat) {
         this.InHeat=InHeat;
     }
 
-    public void setInEMC(Double InEMC) {
+    public void setInEMC(double InEMC) {
         this.InEMC=InEMC;
     }
 
-    public void setInAirDensity(Double InAirDensity) {
+    public void setInAirDensity(double InAirDensity) {
         this.InAirDensity=InAirDensity;
     }
 
-    public void setET(Double ET) {
+    public void setET(double ET) {
         this.ET=ET;
     }
 
-    public void setSoil1Moist(Integer Soil1Moist) {
+    public void setSoil1Moist(int Soil1Moist) {
         this.Soil1Moist=Soil1Moist;
     }
 
-    public void setSoil2Moist(Integer Soil2Moist) {
+    public void setSoil2Moist(int Soil2Moist) {
         this.Soil2Moist=Soil2Moist;
     }
 
-    public void setSoil3Moist(Integer Soil3Moist) {
+    public void setSoil3Moist(int Soil3Moist) {
         this.Soil3Moist=Soil3Moist;
     }
 
-    public void setSoil4Moist(Integer Soil4Moist) {
+    public void setSoil4Moist(int Soil4Moist) {
         this.Soil4Moist=Soil4Moist;
     }
 
-    public void setSoilTemp1(Double SoilTemp1) {
+    public void setSoilTemp1(double SoilTemp1) {
         this.SoilTemp1=SoilTemp1;
     }
 
-    public void setSoilTemp2(Double SoilTemp2) {
+    public void setSoilTemp2(double SoilTemp2) {
         this.SoilTemp2=SoilTemp2;
     }
 
-    public void setSoilTemp3(Double SoilTemp3) {
+    public void setSoilTemp3(double SoilTemp3) {
         this.SoilTemp3=SoilTemp3;
     }
 
-    public void setSoilTemp4(Double SoilTemp4) {
+    public void setSoilTemp4(double SoilTemp4) {
         this.SoilTemp4=SoilTemp4;
     }
 
-    public void setWindSamp(Integer WindSamp) {
+    public void setWindSamp(int WindSamp) {
         this.WindSamp=WindSamp;
     }
 
-    public void setWindTx(Integer WindTx) {
+    public void setWindTx(int WindTx) {
         this.WindTx=WindTx;
     }
 
-    public void setISSRecept(Double ISSRecept) {
+    public void setISSRecept(double ISSRecept) {
         this.ISSRecept=ISSRecept;
     }
 
-    public void setArcInt(Integer ArcInt) {
+    public void setArcInt(int ArcInt) {
         this.ArcInt=ArcInt;
     }
 
@@ -638,17 +638,167 @@ public class Data {
         if (!(o instanceof Data))
         return false;
 
-        Data observ = (Data) o;
-        return Objects.equals(this.id, observ.id);
+        Data d = (Data) o;
+        return Objects.equals(this.id, d.id) &&
+        Objects.equals(this.MeteoDate, d.MeteoDate) &&
+        Objects.equals(this.MeteoTime,d.MeteoTime ) &&
+        Objects.equals(this.TempOut,d.TempOut ) &&
+        Objects.equals(this.HiTemp,d.HiTemp ) &&
+        Objects.equals(this.LowTemp,d.LowTemp ) &&
+        Objects.equals(this.OutHum,d.OutHum ) &&
+        Objects.equals(this.DewPt,d.DewPt ) &&
+        Objects.equals(this.WindSpeed,d.WindSpeed ) &&
+        Objects.equals(this.WindDir,d.WindDir ) &&
+        Objects.equals(this.WindRun,d.WindRun ) &&
+        Objects.equals(this.HiSpeed,d.HiSpeed ) &&
+        Objects.equals(this.HiDir,d.HiDir ) &&
+        Objects.equals(this.WindChill,d.WindChill ) &&
+        Objects.equals(this.HeatIndex,d.HeatIndex ) &&
+        Objects.equals(this.THWIndex,d.THWIndex ) &&
+        Objects.equals(this.THSWIndex,d.THSWIndex ) &&
+        Objects.equals(this.Bar,d.Bar ) &&
+        Objects.equals(this.Rain,d.Rain ) &&
+        Objects.equals(this.RainRate,d.RainRate ) &&
+        Objects.equals(this.SolarRad,d.SolarRad ) &&
+        Objects.equals(this.SolarEnergy,d.SolarEnergy ) &&
+        Objects.equals(this.HiSolarRad,d.HiSolarRad ) &&
+        Objects.equals(this.UVIndex,d.UVIndex ) &&
+        Objects.equals(this.UVDose,d.UVDose ) &&
+        Objects.equals(this.HiUV,d.HiUV ) &&
+        Objects.equals(this.HeatDD,d.HeatDD ) &&
+        Objects.equals(this.CoolDD,d.CoolDD ) &&
+        Objects.equals(this.InTemp,d.InTemp ) &&
+        Objects.equals(this.InHum,d.InHum ) &&
+        Objects.equals(this.InDew,d.InDew ) &&
+        Objects.equals(this.InHeat,d.InHeat ) &&
+        Objects.equals(this.InEMC,d.InEMC ) &&
+        Objects.equals(this.InAirDensity,d.InAirDensity ) &&
+        Objects.equals(this.ET,d.ET ) &&
+        Objects.equals(this.Soil1Moist,d.Soil1Moist ) &&
+        Objects.equals(this.Soil2Moist,d.Soil2Moist ) &&
+        Objects.equals(this.Soil3Moist,d.Soil3Moist ) &&
+        Objects.equals(this.Soil4Moist,d.Soil4Moist ) &&
+        Objects.equals(this.SoilTemp1,d.SoilTemp1 ) &&
+        Objects.equals(this.SoilTemp2,d.SoilTemp2 ) &&
+        Objects.equals(this.SoilTemp3,d.SoilTemp3 ) &&
+        Objects.equals(this.SoilTemp4,d.SoilTemp4 ) &&
+        Objects.equals(this.WindSamp,d.WindSamp ) &&
+        Objects.equals(this.WindTx,d.WindTx ) &&
+        Objects.equals(this.ISSRecept,d.ISSRecept ) &&
+        Objects.equals(this.ArcInt, d.ArcInt );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id, 
+        this.MeteoDate,
+        this.MeteoTime,
+        this.TempOut,
+        this.HiTemp,
+        this.LowTemp,
+        this.OutHum,
+        this.DewPt,
+        this.WindSpeed,
+        this.WindDir,
+        this.WindRun,
+        this.HiSpeed,
+        this.HiDir,
+        this.WindChill,
+        this.HeatIndex,
+        this.THWIndex,
+        this.THSWIndex,
+        this.Bar,
+        this.Rain,
+        this.RainRate,
+        this.SolarRad,
+        this.SolarEnergy,
+        this.HiSolarRad,
+        this.UVIndex,
+        this.UVDose,
+        this.HiUV,
+        this.HeatDD,
+        this.CoolDD,
+        this.InTemp,
+        this.InHum,
+        this.InDew,
+        this.InHeat,
+        this.InEMC,
+        this.InAirDensity,
+        this.ET,
+        this.Soil1Moist,
+        this.Soil2Moist,
+        this.Soil3Moist,
+        this.Soil4Moist,
+        this.SoilTemp1,
+        this.SoilTemp2,
+        this.SoilTemp3,
+        this.SoilTemp4,
+        this.WindSamp,
+        this.WindTx,
+        this.ISSRecept,
+        this.ArcInt
+        );
     }
       
     @Override
     public String toString() {
       return "Davis{" + "id=" + this.id + ", date='" + this.MeteoDate + '\'' + ", time='" + this.MeteoTime + '\'' + '}';
     }
+
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append("\"id\":\""); sb.append(this.id);sb.append("\",");
+        sb.append("\"MeteoDate\":\""); sb.append(this.MeteoDate);sb.append("\",");
+        sb.append("\"MeteoTime\":\""); sb.append(this.MeteoTime);sb.append("\",");
+        sb.append("\"TempOut\":\""); sb.append(this.TempOut);sb.append("\",");
+        sb.append("\"HiTemp\":\""); sb.append(this.HiTemp);sb.append("\",");
+        sb.append("\"LowTemp\":\""); sb.append(this.LowTemp);sb.append("\",");
+        sb.append("\"OutHum\":\""); sb.append(this.OutHum);sb.append("\",");
+        sb.append("\"DewPt\":\""); sb.append(this.DewPt);sb.append("\",");
+        sb.append("\"WindSpeed\":\""); sb.append(this.WindSpeed);sb.append("\",");
+        sb.append("\"WindDir\":\""); sb.append(this.WindDir);sb.append("\",");
+        sb.append("\"WindRun\":\""); sb.append(this.WindRun);sb.append("\",");
+        sb.append("\"HiSpeed\":\""); sb.append(this.HiSpeed);sb.append("\",");
+        sb.append("\"HiDir\":\""); sb.append(this.HiDir);sb.append("\",");
+        sb.append("\"WindChill\":\""); sb.append(this.WindChill);sb.append("\",");
+        sb.append("\"HeatIndex\":\""); sb.append(this.HeatIndex);sb.append("\",");
+        sb.append("\"THWIndex\":\""); sb.append(this.THWIndex);sb.append("\",");
+        sb.append("\"THSWIndex\":\""); sb.append(this.THSWIndex);sb.append("\",");
+        sb.append("\"Bar\":\""); sb.append(this.Bar);sb.append("\",");
+        sb.append("\"Rain\":\""); sb.append(this.Rain);sb.append("\",");
+        sb.append("\"RainRate\":\""); sb.append(this.RainRate);sb.append("\",");
+        sb.append("\"SolarRad\":\""); sb.append(this.SolarRad);sb.append("\",");
+        sb.append("\"SolarEnergy\":\""); sb.append(this.SolarEnergy);sb.append("\",");
+        sb.append("\"HiSolarRad\":\""); sb.append(this.HiSolarRad);sb.append("\",");
+        sb.append("\"UVIndex\":\""); sb.append(this.UVIndex);sb.append("\",");
+        sb.append("\"UVDose\":\""); sb.append(this.UVDose);sb.append("\",");
+        sb.append("\"HiUV\":\""); sb.append(this.HiUV);sb.append("\",");
+        sb.append("\"HeatDD\":\""); sb.append(this.HeatDD);sb.append("\",");
+        sb.append("\"CoolDD\":\""); sb.append(this.CoolDD);sb.append("\",");
+        sb.append("\"InTemp\":\""); sb.append(this.InTemp);sb.append("\",");
+        sb.append("\"InHum\":\""); sb.append(this.InHum);sb.append("\",");
+        sb.append("\"InDew\":\""); sb.append(this.InDew);sb.append("\",");
+        sb.append("\"InHeat\":\""); sb.append(this.InHeat);sb.append("\",");
+        sb.append("\"InEMC\":\""); sb.append(this.InEMC);sb.append("\",");
+        sb.append("\"InAirDensity\":\""); sb.append(this.InAirDensity);sb.append("\",");
+        sb.append("\"ET\":\""); sb.append(this.ET);sb.append("\",");
+        sb.append("\"Soil1Moist\":\""); sb.append(this.Soil1Moist);sb.append("\",");
+        sb.append("\"Soil2Moist\":\""); sb.append(this.Soil2Moist);sb.append("\",");
+        sb.append("\"Soil3Moist\":\""); sb.append(this.Soil3Moist);sb.append("\",");
+        sb.append("\"Soil4Moist\":\""); sb.append(this.Soil4Moist);sb.append("\",");
+        sb.append("\"SoilTemp1\":\""); sb.append(this.SoilTemp1);sb.append("\",");
+        sb.append("\"SoilTemp2\":\""); sb.append(this.SoilTemp2);sb.append("\",");
+        sb.append("\"SoilTemp3\":\""); sb.append(this.SoilTemp3);sb.append("\",");
+        sb.append("\"SoilTemp4\":\""); sb.append(this.SoilTemp4);sb.append("\",");
+        sb.append("\"WindSamp\":\""); sb.append(this.WindSamp);sb.append("\",");
+        sb.append("\"WindTx\":\""); sb.append(this.WindTx);sb.append("\",");
+        sb.append("\"ISSRecept\":\""); sb.append(this.ISSRecept);sb.append("\",");
+        sb.append("\"ArcInt\":\""); sb.append(this.ArcInt);sb.append("\"");
+        sb.append("}");
+
+        return sb.toString();
+        
+    }
+
 }
