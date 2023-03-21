@@ -11,7 +11,7 @@
 sudo mkdir /data
 sudo mkdir /data/meteo
 sudo chown ilya /data
-sudo mkdir /data/meteo
+sudo chown ilya /data/meteo
 ```
 
 Для devfs доступна консоль:
@@ -91,4 +91,8 @@ http://localhost:8081/observ
  ### Swagger
  
  http://localhost:8081/v3/api-docs/
- http://localhost:8080/swagger-ui.html
+ http://localhost:8081/swagger-ui.html
+
+ http://158.160.46.230:8081/v3/api-docs/
+ http://158.160.46.230:8081/swagger-ui.html
+ 
