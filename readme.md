@@ -93,6 +93,10 @@ http://localhost:8081/observ
  http://localhost:8081/v3/api-docs/
  http://localhost:8081/swagger-ui.html
 
- http://158.160.46.230:8081/v3/api-docs/
- http://158.160.46.230:8081/swagger-ui.html
+ http://158.160.42.201:8081/v3/api-docs/
+ http://158.160.42.201:8081/swagger-ui.html
+ http://158.160.42.201:8082/v3/api-docs/
+ http://158.160.42.201:8082/swagger-ui.html
+ 
+
  
