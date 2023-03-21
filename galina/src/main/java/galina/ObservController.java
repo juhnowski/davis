@@ -2,8 +2,6 @@ package galina;
     
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +18,7 @@ public class ObservController {
   public ObservController(ObservRepository repository) {
     this.repository = repository;
   }
-    ObjectMapper objectMapper = new ObjectMapper();
-  // Aggregate root
-  // tag::get-aggregate-root[]
+
   @GetMapping("/observ")
   public String all() {
     List<Observ> list = repository.findAll();
@@ -41,10 +37,9 @@ public class ObservController {
     
     return sb.toString();
   }
-  // end::get-aggregate-root[]
 
-    @PostMapping("/observ")
-  public String newObserv(@RequestBody String strObserv) throws JsonProcessingException {
+  @PostMapping("/observ")
+  public String newObserv(@RequestBody String strObserv) {
         try {
             ObservMapper mapper = new ObservMapper();
             //Observ observ = objectMapper.readValue(strObserv, Observ.class);
@@ -57,9 +52,7 @@ public class ObservController {
             return null;
         }
   }
-
-  // Single item
-  
+ 
   @GetMapping("/observ/{id}")
   public String one(@PathVariable Long id) {
     
@@ -69,12 +62,14 @@ public class ObservController {
     return o.toJSON();
   }
 
-  
+  @PutMapping("/observ")
+  public String replaceData(@RequestBody String strNewObserv) {
+    ObservMapper mapper = new ObservMapper();
+    try{
+      Observ newObserv = mapper.parse(strNewObserv);
 
-  @PutMapping("/observ/{id}")
-  public String replaceData(@RequestBody String strNewObserv, @PathVariable Long id) throws JsonProcessingException {
-    Observ newObserv = objectMapper.readValue(strNewObserv, Observ.class);
-
+    
+    long id = newObserv.getId();
     return repository.findById(id)
       .map(observ -> {
         observ.setMeteoDate(newObserv.getMeteoDate());
@@ -158,6 +153,11 @@ public class ObservController {
         newObserv.setId(id);
         return repository.save(newObserv).toJSON();
       });
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return e.getMessage();
+    }
   }
 
   @DeleteMapping("/observ/{id}")

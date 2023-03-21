@@ -1,8 +1,5 @@
 package galina;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,88 +15,88 @@ import javax.persistence.Transient;
 @Entity
 public class Observ {
 	private @Id long id;
-    @JsonProperty
+    
     private String MeteoDate; // Дата наблюдения '2011-12-03'
-    @JsonProperty private String MeteoTime; // Время наблюдения '10:15:30'
-    @JsonProperty private String WindDir; // Направление ветра
-    @JsonProperty private double WindSpeed; // Скорость ветра
-    @JsonProperty private int Pressure; // Давление
-    @JsonProperty private double TempMin; // температура минимальная
-    @JsonProperty private double TempMax; // температура максимальная
-    @JsonProperty private double Precipitation; // Количество осадков
-    @JsonProperty private double SunshineDuration; // Продолжительность солнечного сияния
-    @JsonProperty private double DewPoint; // Точка росы (в пожароопасный период)
-    @JsonProperty private int SnowLevelWeatherSite; // Уровень снега на метеоплощадке
-    @JsonProperty private String SnowCoverage; // Определение покрытия земли снегом в баллах
-    @JsonProperty private int SnowLevelForest; // Уровень снега в лесу
-    @JsonProperty private double AverageSnowDensity; // средняя плотность снега
-    @JsonProperty private int MoistureWaterInSnow; // влагозапас воды в снеге
-    @JsonProperty private String SnowCover; // Характер залегания снежного покрова
-    @JsonProperty private String SnowState; // характеристика состояния снега
+     private String MeteoTime; // Время наблюдения '10:15:30'
+     private String WindDir; // Направление ветра
+     private double WindSpeed; // Скорость ветра
+     private int Pressure; // Давление
+     private double TempMin; // температура минимальная
+     private double TempMax; // температура максимальная
+     private double Precipitation; // Количество осадков
+     private double SunshineDuration; // Продолжительность солнечного сияния
+     private double DewPoint; // Точка росы (в пожароопасный период)
+     private int SnowLevelWeatherSite; // Уровень снега на метеоплощадке
+     private String SnowCoverage; // Определение покрытия земли снегом в баллах
+     private int SnowLevelForest; // Уровень снега в лесу
+     private double AverageSnowDensity; // средняя плотность снега
+     private int MoistureWaterInSnow; // влагозапас воды в снеге
+     private String SnowCover; // Характер залегания снежного покрова
+     private String SnowState; // характеристика состояния снега
 
-    @JsonProperty private int NRustayskoyeWaterLevel; // Нижнее Рустайское - Уровень воды
-    @JsonProperty private double NRustayskoyeTemp; // Нижнее Рустайское - Температура
-    @JsonProperty private double NRustayskoyepH; // Нижнее Рустайское - рН
-    @JsonProperty private int NRustayskoyeElConduct; // Нижнее Рустайское - электропроводность
-    @JsonProperty private int NRustayskoyeWaterColor; // Нижнее Рустайское - цветность воды
-    @JsonProperty private double NRustayskoyeOxygen; // Нижнее Рустайское - кислород
-    @JsonProperty private double NRustayskoyeBPK5; // Нижнее Рустайское - БПК-5
+     private int NRustayskoyeWaterLevel; // Нижнее Рустайское - Уровень воды
+     private double NRustayskoyeTemp; // Нижнее Рустайское - Температура
+     private double NRustayskoyepH; // Нижнее Рустайское - рН
+     private int NRustayskoyeElConduct; // Нижнее Рустайское - электропроводность
+     private int NRustayskoyeWaterColor; // Нижнее Рустайское - цветность воды
+     private double NRustayskoyeOxygen; // Нижнее Рустайское - кислород
+     private double NRustayskoyeBPK5; // Нижнее Рустайское - БПК-5
 
-    @JsonProperty private int KrugloeWaterLevel; // Круглое - Уровень воды
-    @JsonProperty private double KrugloeTemp; // Круглое - Температура
-    @JsonProperty private double KrugloepH; // Круглое - рН
-    @JsonProperty private int KrugloeElConduct; // Круглое - электропроводность
-    @JsonProperty private int KrugloeWaterColor; // Круглое - цветность воды
-    @JsonProperty private double KrugloeOxygen; // Круглое - кислород
-    @JsonProperty private double KrugloeBPK5; // Круглое - БПК-5
+     private int KrugloeWaterLevel; // Круглое - Уровень воды
+     private double KrugloeTemp; // Круглое - Температура
+     private double KrugloepH; // Круглое - рН
+     private int KrugloeElConduct; // Круглое - электропроводность
+     private int KrugloeWaterColor; // Круглое - цветность воды
+     private double KrugloeOxygen; // Круглое - кислород
+     private double KrugloeBPK5; // Круглое - БПК-5
 
-    @JsonProperty private int KalachikWaterLevel; // Калачик - Уровень воды
-    @JsonProperty private double KalachikTemp; // Калачик - Температура
-    @JsonProperty private double KalachikpH; // Калачик - рН
-    @JsonProperty private int KalachikElConduct; // Калачик - электропроводность
-    @JsonProperty private int KalachikWaterColor; // Калачик - цветность воды
-    @JsonProperty private double KalachikOxygen; // Калачик - кислород
-    @JsonProperty private double KalachikBPK5; // Калачик - БПК-5
+     private int KalachikWaterLevel; // Калачик - Уровень воды
+     private double KalachikTemp; // Калачик - Температура
+     private double KalachikpH; // Калачик - рН
+     private int KalachikElConduct; // Калачик - электропроводность
+     private int KalachikWaterColor; // Калачик - цветность воды
+     private double KalachikOxygen; // Калачик - кислород
+     private double KalachikBPK5; // Калачик - БПК-5
 
-    @JsonProperty private int MakhovskoeWaterLevel; // Маховское - Уровень воды
-    @JsonProperty private double MakhovskoeTemp; // Маховское - Температура
-    @JsonProperty private double MakhovskoepH; // Маховское - рН
-    @JsonProperty private int MakhovskoeElConduct; // Маховское - электропроводность
-    @JsonProperty private int MakhovskoeWaterColor; // Маховское - цветность воды
-    @JsonProperty private double MakhovskoeOxygen; // Маховское - кислород
-    @JsonProperty private double MakhovskoeBPK5; // Маховское - БПК-5
+     private int MakhovskoeWaterLevel; // Маховское - Уровень воды
+     private double MakhovskoeTemp; // Маховское - Температура
+     private double MakhovskoepH; // Маховское - рН
+     private int MakhovskoeElConduct; // Маховское - электропроводность
+     private int MakhovskoeWaterColor; // Маховское - цветность воды
+     private double MakhovskoeOxygen; // Маховское - кислород
+     private double MakhovskoeBPK5; // Маховское - БПК-5
 
-    @JsonProperty private int KerzhenetsWaterLevel; // Керженец - Уровень воды
-    @JsonProperty private double KerzhenetsTemp; // Керженец - Температура
-    @JsonProperty private double KerzhenetspH; // Керженец - рН
-    @JsonProperty private int KerzhenetsElConduct; // Керженец - электропроводность
-    @JsonProperty private int KerzhenetsWaterColor; // Керженец - цветность воды
-    @JsonProperty private double KerzhenetsOxygen; // Керженец - кислород
-    @JsonProperty private double KerzhenetsBPK5; // Керженец - БПК-5
+     private int KerzhenetsWaterLevel; // Керженец - Уровень воды
+     private double KerzhenetsTemp; // Керженец - Температура
+     private double KerzhenetspH; // Керженец - рН
+     private int KerzhenetsElConduct; // Керженец - электропроводность
+     private int KerzhenetsWaterColor; // Керженец - цветность воды
+     private double KerzhenetsOxygen; // Керженец - кислород
+     private double KerzhenetsBPK5; // Керженец - БПК-5
 
-    @JsonProperty private int VishnyaWaterLevel; // Вишня - Уровень воды
-    @JsonProperty private double VishnyaTemp; // Вишня - Температура
-    @JsonProperty private double VishnyapH; // Вишня - рН
-    @JsonProperty private int VishnyaElConduct; // Вишня - электропроводность
-    @JsonProperty private int VishnyaWaterColor; // Вишня - цветность воды
-    @JsonProperty private double VishnyaOxygen; // Вишня - кислород
-    @JsonProperty private double VishnyaBPK5; // Вишня - БПК-5
+     private int VishnyaWaterLevel; // Вишня - Уровень воды
+     private double VishnyaTemp; // Вишня - Температура
+     private double VishnyapH; // Вишня - рН
+     private int VishnyaElConduct; // Вишня - электропроводность
+     private int VishnyaWaterColor; // Вишня - цветность воды
+     private double VishnyaOxygen; // Вишня - кислород
+     private double VishnyaBPK5; // Вишня - БПК-5
 
-    @JsonProperty private int WellWaterLevel; // Колодец - Уровень воды
-    @JsonProperty private double WellTemp; // Колодец - Температура
-    @JsonProperty private double WellpH; // Колодец - рН
-    @JsonProperty private int WellElConduct; // Колодец - электропроводность
-    @JsonProperty private int WellWaterColor; // Колодец - цветность воды
-    @JsonProperty private double WellOxygen; // Колодец - кислород
-    @JsonProperty private double WellBPK5; // Колодец - БПК-5
+     private int WellWaterLevel; // Колодец - Уровень воды
+     private double WellTemp; // Колодец - Температура
+     private double WellpH; // Колодец - рН
+     private int WellElConduct; // Колодец - электропроводность
+     private int WellWaterColor; // Колодец - цветность воды
+     private double WellOxygen; // Колодец - кислород
+     private double WellBPK5; // Колодец - БПК-5
 
-    @JsonProperty private int VishenskoeWaterLevel; // Вишёнское - Уровень воды
-    @JsonProperty private double VishenskoeTemp; // Вишёнское - Температура
-    @JsonProperty private double VishenskoepH; // Вишёнское - рН
-    @JsonProperty private int VishenskoeElConduct; // Вишёнское - электропроводность
-    @JsonProperty private int VishenskoeWaterColor; // Вишёнское - цветность воды
-    @JsonProperty private double VishenskoeOxygen; // Вишёнское - кислород
-    @JsonProperty private double VishenskoeBPK5; // Вишёнское - БПК-5
+     private int VishenskoeWaterLevel; // Вишёнское - Уровень воды
+     private double VishenskoeTemp; // Вишёнское - Температура
+     private double VishenskoepH; // Вишёнское - рН
+     private int VishenskoeElConduct; // Вишёнское - электропроводность
+     private int VishenskoeWaterColor; // Вишёнское - цветность воды
+     private double VishenskoeOxygen; // Вишёнское - кислород
+     private double VishenskoeBPK5; // Вишёнское - БПК-5
 
     @Transient
     private LocalDate parsedDate;
@@ -980,32 +977,7 @@ public class Observ {
     public int hashCode() {
         return Objects.hash(this.id);
     }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o)
-//        return true;
-//
-//        if (!(o instanceof Observ))
-//        return false;
-//
-//        Observ observ = (Observ) o;
-//        return Objects.equals(this.MeteoDate, observ.MeteoDate)&& Objects.equals(this.MeteoTime, observ.MeteoTime);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        parsedDate = LocalDate.parse(MeteoDate, DateTimeFormatter.ofPattern("dd.MM.yy"));
-//        parsedTime = LocalTime.parse(MeteoTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
-//
-//        long longHash = LocalDateTime.of(parsedDate, parsedTime)
-//                 .atZone(ZoneId.systemDefault())
-//                 .toInstant()
-//                 .toEpochMilli();
-//
-//        return Objects.hash(longHash);
-//    }
-      
+     
     @Override
     public String toString() {
       return "Наблюдение {" + "id=" + this.id + ", date='" + this.MeteoDate + '\'' + ", time='" + this.MeteoTime + '\'' + '}';
@@ -1087,7 +1059,7 @@ public class Observ {
         sb.append("\"VishenskoeElConduct\":\""); sb.append(this.VishenskoeElConduct);sb.append("\",");
         sb.append("\"VishenskoeWaterColor\":\""); sb.append(this.VishenskoeWaterColor);sb.append("\",");
         sb.append("\"VishenskoeOxygen\":\""); sb.append(this.VishenskoeOxygen);sb.append("\",");
-        sb.append("\"VishenskoeBPK5\":\""); sb.append(this.VishenskoeBPK5);
+        sb.append("\"VishenskoeBPK5\":\""); sb.append(this.VishenskoeBPK5);sb.append("\"");
         sb.append("}");
 
         return sb.toString();
