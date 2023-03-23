@@ -48,18 +48,12 @@
 	<profiles>
 		<profile>
 			<id>devmem</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<spring.profiles.active>devmem</spring.profiles.active>
 			</properties>
 		</profile>
 				<profile>
 			<id>devfs</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<spring.profiles.active>devfs</spring.profiles.active>
 			</properties>
@@ -69,6 +63,9 @@
 			<properties>
 				<spring.profiles.active>prod</spring.profiles.active>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 
@@ -92,6 +89,7 @@
 							<mainClass>
 								galina.ObservApplication
 							</mainClass>
+							<executable>true</executable>
 						</configuration>
 					</execution>
 				</executions>

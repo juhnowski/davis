@@ -93,10 +93,25 @@ http://localhost:8081/observ
  http://localhost:8081/v3/api-docs/
  http://localhost:8081/swagger-ui.html
 
- http://158.160.42.201:8081/v3/api-docs/
+ http://51.250.6.194:8081/v3/api-docs/
  http://158.160.42.201:8081/swagger-ui.html
  http://158.160.42.201:8082/v3/api-docs/
  http://158.160.42.201:8082/swagger-ui.html
  
 
- 
+ # Установить как сервис
+sudo ln -s /home/ilya/src_meteo/galina/target/galina-0.0.1-SNAPSHOT.jar /etc/init.d/galina
+sudo cp galina.service /etc/systemd/system
+
+sudo ln -s /home/ilya/src_meteo/davis/target/davis-0.0.1-SNAPSHOT.jar /etc/init.d/davis
+sudo cp davis.service /etc/systemd/system
+
+sudo systemctl daemon-reload
+sudo systemctl start galina.service
+sudo systemctl start davis.service
+
+sudo systemctl stop  galina.service
+sudo systemctl stop  galina.service
+
+sudo systemctl status davis.service
+sudo systemctl status davis.service
