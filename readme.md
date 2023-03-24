@@ -111,7 +111,19 @@ sudo systemctl start galina.service
 sudo systemctl start davis.service
 
 sudo systemctl stop  galina.service
-sudo systemctl stop  galina.service
+sudo systemctl stop  davis.service
 
+sudo systemctl status galina.service
 sudo systemctl status davis.service
-sudo systemctl status davis.service
+
+sudo systemctl enable galina.service
+sudo systemctl enable davis.service
+
+sudo systemctl list-units -a --state=inactive
+
+
+nohup java -jar /home/ilya/src_meteo/galina/target/galina-0.0.1-SNAPSHOT.jar &
+nohup java -jar /home/ilya/src_meteo/davis/target/davis-0.0.1-SNAPSHOT.jar &
+
+# Docker
+docker build -t myorg/myapp .
