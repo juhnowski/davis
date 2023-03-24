@@ -126,4 +126,18 @@ nohup java -jar /home/ilya/src_meteo/galina/target/galina-0.0.1-SNAPSHOT.jar &
 nohup java -jar /home/ilya/src_meteo/davis/target/davis-0.0.1-SNAPSHOT.jar &
 
 # Docker
-docker build -t myorg/myapp .
+sudo chown $USER /var/run/docker.sock
+
+docker build -t juhnowski/davis .
+docker push juhnowski/davis
+docker tag juhnowski/davis cr.yandex/crp237cj1t7rnkmrc88e/meteo:davis
+docker push cr.yandex/crp237cj1t7rnkmrc88e/meteo:davis
+
+
+docker run -p 9000:9000 -e JAVA_OPTS=-Dserver.port=9000 juhnowski/davis
+
+
+
+sudo snap install kubectl --classic
+
+
