@@ -94,9 +94,9 @@ http://localhost:8081/observ
  http://localhost:8081/swagger-ui.html
 
  http://51.250.6.194:8081/v3/api-docs/
- http://158.160.42.201:8081/swagger-ui.html
- http://158.160.42.201:8082/v3/api-docs/
- http://158.160.42.201:8082/swagger-ui.html
+ http://51.250.6.194:8081/swagger-ui.html
+ http://51.250.6.194:8082/v3/api-docs/
+ http://51.250.6.194:8082/swagger-ui.html
  
 
  # Установить как сервис
@@ -130,14 +130,51 @@ sudo chown $USER /var/run/docker.sock
 
 docker build -t juhnowski/davis .
 docker push juhnowski/davis
-docker tag juhnowski/davis cr.yandex/crp237cj1t7rnkmrc88e/meteo:davis
-docker push cr.yandex/crp237cj1t7rnkmrc88e/meteo:davis
+docker tag juhnowski/davis cr.yandex/crp237cj1t7rnkmrc88e/davis
+docker build -t cr.yandex/crp237cj1t7rnkmrc88e/davis .
 
+docker push cr.yandex/crp237cj1t7rnkmrc88e/davis
+
+docker build -t davis .
 
 docker run -p 9000:9000 -e JAVA_OPTS=-Dserver.port=9000 juhnowski/davis
 
-
+docker image list
 
 sudo snap install kubectl --classic
 
+Установить yc
+```
+curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+```
+Создать контейнер
+```
+yc container registry create --name my-first-registry
+```
+результат
+```
+id: crpbk6v2e0thk6bm4s38
+folder_id: b1g2s2g1u72k9c25um07
+name: my-first-registry
+status: ACTIVE
+created_at: "2023-03-24T16:27:20.829Z"
+```
+Конфигурация Docker
+```
+yc container registry configure-docker
+```
 
+docker push cr.yandex/crp237cj1t7rnkmrc88e/davis
+
+docker tag ubuntu cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
+
+docker push cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
+docker run --name hello cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
+
+docker stats --all
+
+docker stop keen_poincare
+docker stop e6ad00879492
+
+7b150d1646aa   hello           0.00%     0B / 0B             0.00%     0B / 0B   0B / 0B     0
+e6ad00879492   keen_poincare   0.00%     0B / 0B             0.00%     0B / 0B   0B / 0B     0
