@@ -99,10 +99,15 @@ http://localhost:8081/observ
  http://51.250.6.194:8082/swagger-ui.html
  
 
-# Порядок развертывания
+# Порядок развертывания Davis
 Строим проект
 ```
-mvn clean package
+cd davis
+mvn clean install
+```
+Проверяем локально
+```
+mvn clean spring-boot:run 
 ```
 
 Создаем образ
@@ -132,3 +137,46 @@ yc compute instance create-with-container \
   --service-account-name dev \
   --docker-compose-file docker-compose.yaml
 ```  
+# Порядок развертывания Galina
+Строим проект
+```
+cd galina
+mvn clean install
+```
+
+Проверяем локально
+```
+mvn spring-boot:run 
+```
+
+Создаем образ
+```
+sudo DOCKER_BUILDKIT=1 docker build -t juhnowski/galina .
+```
+
+Отправляем в репозиторий
+```
+sudo docker tag docker.io/juhnowski/galina cr.yandex/crpbk6v2e0thk6bm4s38/galina
+sudo docker push cr.yandex/crpbk6v2e0thk6bm4s38/galina
+```
+
+Тестируем образ локально
+```
+sudo docker run -p 8081:8081 cr.yandex/crpbk6v2e0thk6bm4s38/galina
+```
+
+Создаем виртуальную машину
+```
+yc compute instance create-with-container \
+  --name galina \
+  --zone ru-central1-a \
+  --ssh-key ~/.ssh/id_ed25519.pub \
+  --create-boot-disk size=30 \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --service-account-name dev \
+  --docker-compose-file docker-compose.yaml
+```  
+
+# Postman
+Пока основной рабочий инструмент для работы с микросервисами - Postman (https://www.postman.com/)
+Запросы экспортированы в файл ```kerzhenskiy.postman_collection.json```
