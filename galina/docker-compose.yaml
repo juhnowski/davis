@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  app1:
+    container_name: galina
+    image: "cr.yandex/crpbk6v2e0thk6bm4s38/galina"
+    ports:
+      - "8081:8081"
+    restart: always
