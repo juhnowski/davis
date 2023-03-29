@@ -5,9 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>ru.kerzhenskiy</groupId>
-		<artifactId>meteo</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<artifactId>davis</artifactId>
@@ -43,6 +44,11 @@
 			<version>42.2.16</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -74,20 +80,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<classifier>spring-boot</classifier>
-							<mainClass>
-								davis.DataApplication
-							</mainClass>
-							<executable>true</executable>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

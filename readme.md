@@ -99,82 +99,36 @@ http://localhost:8081/observ
  http://51.250.6.194:8082/swagger-ui.html
  
 
- # Установить как сервис
-sudo ln -s /home/ilya/src_meteo/galina/target/galina-0.0.1-SNAPSHOT.jar /etc/init.d/galina
-sudo cp galina.service /etc/systemd/system
-
-sudo ln -s /home/ilya/src_meteo/davis/target/davis-0.0.1-SNAPSHOT.jar /etc/init.d/davis
-sudo cp davis.service /etc/systemd/system
-
-sudo systemctl daemon-reload
-sudo systemctl start galina.service
-sudo systemctl start davis.service
-
-sudo systemctl stop  galina.service
-sudo systemctl stop  davis.service
-
-sudo systemctl status galina.service
-sudo systemctl status davis.service
-
-sudo systemctl enable galina.service
-sudo systemctl enable davis.service
-
-sudo systemctl list-units -a --state=inactive
-
-
-nohup java -jar /home/ilya/src_meteo/galina/target/galina-0.0.1-SNAPSHOT.jar &
-nohup java -jar /home/ilya/src_meteo/davis/target/davis-0.0.1-SNAPSHOT.jar &
-
-# Docker
-sudo chown $USER /var/run/docker.sock
-
-docker build -t juhnowski/davis .
-docker push juhnowski/davis
-docker tag juhnowski/davis cr.yandex/crp237cj1t7rnkmrc88e/davis
-docker build -t cr.yandex/crp237cj1t7rnkmrc88e/davis .
-
-docker push cr.yandex/crp237cj1t7rnkmrc88e/davis
-
-docker build -t davis .
-
-docker run -p 9000:9000 -e JAVA_OPTS=-Dserver.port=9000 juhnowski/davis
-
-docker image list
-
-sudo snap install kubectl --classic
-
-Установить yc
+# Порядок развертывания
+Строим проект
 ```
-curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-```
-Создать контейнер
-```
-yc container registry create --name my-first-registry
-```
-результат
-```
-id: crpbk6v2e0thk6bm4s38
-folder_id: b1g2s2g1u72k9c25um07
-name: my-first-registry
-status: ACTIVE
-created_at: "2023-03-24T16:27:20.829Z"
-```
-Конфигурация Docker
-```
-yc container registry configure-docker
+mvn clean package
 ```
 
-docker push cr.yandex/crp237cj1t7rnkmrc88e/davis
+Создаем образ
+```
+sudo DOCKER_BUILDKIT=1 docker build -t juhnowski/davis .
+```
 
-docker tag ubuntu cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
+Отправляем в репозиторий
+```
+sudo docker tag docker.io/juhnowski/davis cr.yandex/crpbk6v2e0thk6bm4s38/davis
+sudo docker push cr.yandex/crpbk6v2e0thk6bm4s38/davis
+```
 
-docker push cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
-docker run --name hello cr.yandex/crp237cj1t7rnkmrc88e/ubuntu:hello
+Тестируем образ локально
+```
+sudo docker run -p 8082:8082 cr.yandex/crpbk6v2e0thk6bm4s38/davis
+```
 
-docker stats --all
-
-docker stop keen_poincare
-docker stop e6ad00879492
-
-7b150d1646aa   hello           0.00%     0B / 0B             0.00%     0B / 0B   0B / 0B     0
-e6ad00879492   keen_poincare   0.00%     0B / 0B             0.00%     0B / 0B   0B / 0B     0
+Создаем виртуальную машину
+```
+yc compute instance create-with-container \
+  --name davis \
+  --zone ru-central1-a \
+  --ssh-key ~/.ssh/id_ed25519.pub \
+  --create-boot-disk size=30 \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --service-account-name dev \
+  --docker-compose-file docker-compose.yaml
+```  

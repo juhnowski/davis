@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  app1:
+    container_name: davis
+    image: "cr.yandex/crpbk6v2e0thk6bm4s38/davis"
+    ports:
+      - "8082:8082"
+    restart: always
